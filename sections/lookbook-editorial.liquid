@@ -1,0 +1,64 @@
+<div class="max-w-[1280px] mx-auto px-6 md:px-16 py-12 space-y-24">
+  <section class="min-h-[45vh] flex flex-col justify-center items-center text-center">
+    <div class="glass-panel rounded-3xl p-10 md:p-20 max-w-4xl relative overflow-hidden">
+      <span class="text-xs font-semibold uppercase tracking-widest text-[#70585b] block mb-4">{{ section.settings.subheading }}</span>
+      <h1 class="font-headline-md text-4xl md:text-7xl text-[#031635] font-bold mb-6 leading-tight">
+        {{ section.settings.heading }}
+      </h1>
+      <p class="text-lg text-[#44474e] max-w-xl mx-auto mb-8 leading-relaxed">
+        {{ section.settings.text }}
+      </p>
+      <a href="/collections/all" class="bg-[#031635] text-white text-xs font-semibold tracking-wider uppercase px-8 py-4 rounded-lg btn-hover-lift inline-flex items-center gap-2">
+        Shop The Editorial <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7">
+      <div class="w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-xl bg-white">
+        <img src="https://lh3.googleusercontent.com/aida/AP1WRLvKZ5LDIRYOddqxqKBSi5T3dK2VVK8SFnBB6R4rmAsZeXAvfdw5Znd8cEJQpu_Nf8CI23V6qUNkIQGwQ0r5bTfI_6ZhmpxHF4L1kbDpwVKZZ0XXS8JrDAaO6f86ZHojw-p3UvYiIJg2cu8-15YEsf_WJgyGyXqQshPe5ysOpuef_WUuY9uWdgFk6prsI8wXbdhwG1P-1oJU9mC4UPq6-I7sU4bJ5MP78g6yrihWMVzPjt41Jt3sadD21wU" alt="Look 01" class="w-full h-full object-cover" />
+      </div>
+    </div>
+    <div class="lg:col-span-5 space-y-8">
+      <div class="glass-panel rounded-3xl p-8 md:p-12">
+        <span class="text-xs font-semibold uppercase tracking-widest text-[#70585b] block mb-2">SPATIAL BALANCE · ARCHITECTURAL SILHOUETTES</span>
+        <h2 class="font-headline-md text-3xl md:text-4xl font-bold text-[#031635] mb-4">The Aurum Tote</h2>
+        <p class="text-[#44474e] leading-relaxed mb-8">
+          Defying static geometry, the Aurum Tote shifts dynamically with movement while retaining its structural architectural lines.
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Lookbook Editorial",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Editorial 04"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Architectural Movement"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Body Text",
+      "default": "A study in how form follows motion. Highlighting our proprietary memory polymers and monolithic casting techniques."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lookbook Editorial"
+    }
+  ]
+}
+{% endschema %}

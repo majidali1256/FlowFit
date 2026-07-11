@@ -41,14 +41,8 @@
   <!-- Flow Wear Theme Styles -->
   {{ 'theme.css' | asset_url | stylesheet_tag }}
 
-  <!-- Three.js CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body class="bg-background text-[#1b1b1e] antialiased relative min-h-screen">
-
-  {% if settings.enable_webgl_shader %}
-    <canvas id="global-shader-canvas" class="fixed inset-0 z-[-1] pointer-events-none opacity-45"></canvas>
-  {% endif %}
 
   {% section 'header' %}
 

@@ -14,20 +14,10 @@
         "subheading": "Featured Artifact",
         "heading": "Spatial Artifacts"
       }
-    },
-    "interactive_3d": {
-      "type": "interactive-3d-experience",
-      "settings": {}
-    },
-    "lookbook": {
-      "type": "lookbook-editorial",
-      "settings": {}
     }
   },
   "order": [
     "hero",
-    "featured_artifact",
-    "interactive_3d",
-    "lookbook"
+    "featured_artifact"
   ]
 }

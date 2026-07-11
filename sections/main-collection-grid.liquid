@@ -1,8 +1,13 @@
 <div class="max-w-[1280px] mx-auto px-6 md:px-16 pt-8 pb-20">
   <header class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
     <div>
-      <h1 class="font-headline-md text-4xl md:text-6xl text-[#031635] font-bold mb-3">{{ collection.title | default: 'Curated Collection' }}</h1>
-      <p class="text-lg text-[#44474e]">{{ collection.description | default: 'Designed for fluidity, movement, and architectural balance.' }}</p>
+      <h1 class="font-headline-md text-4xl md:text-6xl text-[#031635] font-bold mb-3">{{ collection.title | default: 'Spatial Collection 04' }}</h1>
+      <p class="text-lg text-[#44474e]">{{ collection.description | default: 'Designed for fluidity, movement, and architectural balance. Engineered with tensioned titanium and responsive memory textiles.' }}</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <span class="px-4 py-2 rounded-full bg-[#031635] text-white text-xs font-semibold uppercase tracking-widest">All Pieces</span>
+      <span class="px-4 py-2 rounded-full bg-white border border-[#031635]/15 text-[#031635] text-xs font-semibold uppercase tracking-widest">Outerwear</span>
+      <span class="px-4 py-2 rounded-full bg-white border border-[#031635]/15 text-[#031635] text-xs font-semibold uppercase tracking-widest">Accessories</span>
     </div>
   </header>
 
@@ -29,16 +34,98 @@
         </div>
       </article>
     {% else %}
-      <!-- Fallback static cards when viewed without a collection populated -->
+      <!-- 6 Luxury Fallback Cards when viewed without products populated -->
       <article class="md:col-span-6 lg:col-span-4 glass-panel rounded-3xl overflow-hidden hover-lift group flex flex-col">
-        <a href="/products/aurum-wave" class="aspect-square relative bg-white block overflow-hidden">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLZ8EVYSQYQcR4v0O8JvDvCSOmv2M99X31uSDDKCMAD4n75XzXRf7CSQrDz81GZWG-9KvvQzXUZOPcRJjz3qT3m0PLunGkoGUwk7OigEV-bQqrI0k-ZE2p2vf67lHwxQQAMeHNKoALWRZroKV-yIYzJBEXbDcQC07You2gS0DChAhng3CCee12-FUHBRc9671cTlOswd_tsz5SflQE6L4R0HlZeIH7VsT-o5srd5QDAYZA8mCwGtFwgQ" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Cylindrical Cuff" />
+        <a href="/products/aurum-onda" class="aspect-square relative bg-white block overflow-hidden">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLZ8EVYSQYQcR4v0O8JvDvCSOmv2M99X31uSDDKCMAD4n75XzXRf7CSQrDz81GZWG-9KvvQzXUZOPcRJjz3qT3m0PLunGkoGUwk7OigEV-bQqrI0k-ZE2p2vf67lHwxQQAMeHNKoALWRZroKV-yIYzJBEXbDcQC07You2gS0DChAhng3CCee12-FUHBRc9671cTlOswd_tsz5SflQE6L4R0HlZeIH7VsT-o5srd5QDAYZA8mCwGtFwgQ" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Sculptural Wave Jacket" />
         </a>
         <div class="p-6 flex-grow flex flex-col justify-between">
-          <span class="text-[10px] uppercase tracking-widest text-[#70585b] font-semibold">Spatial Accessory</span>
-          <h3 class="font-headline-md text-2xl font-bold text-[#031635] mt-1">Cylindrical Cuff</h3>
+          <div>
+            <span class="text-[10px] uppercase tracking-widest text-[#70585b] font-semibold">Outerwear · Edition 04</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#031635] mt-1">Sculptural Wave Jacket</h3>
+          </div>
           <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#031635]/10">
-            <span class="text-lg font-bold text-[#031635]">$340.00</span>
+            <span class="text-lg font-bold text-[#031635]">$1,250.00</span>
+            <button class="bg-[#031635] text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider">Add to Bag</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="md:col-span-6 lg:col-span-4 glass-panel rounded-3xl overflow-hidden hover-lift group flex flex-col">
+        <a href="/products/aurum-onda" class="aspect-square relative bg-white block overflow-hidden">
+          <img src="https://lh3.googleusercontent.com/aida/AP1WRLvKZ5LDIRYOddqxqKBSi5T3dK2VVK8SFnBB6R4rmAsZeXAvfdw5Znd8cEJQpu_Nf8CI23V6qUNkIQGwQ0r5bTfI_6ZhmpxHF4L1kbDpwVKZZ0XXS8JrDAaO6f86ZHojw-p3UvYiIJg2cu8-15YEsf_WJgyGyXqQshPe5ysOpuef_WUuY9uWdgFk6prsI8wXbdhwG1P-1oJU9mC4UPq6-I7sU4bJ5MP78g6yrihWMVzPjt41Jt3sadD21wU" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Aurum Titanium Cuff" />
+        </a>
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-widest text-[#70585b] font-semibold">Spatial Accessory</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#031635] mt-1">Aurum Titanium Cuff</h3>
+          </div>
+          <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#031635]/10">
+            <span class="text-lg font-bold text-[#031635]">$480.00</span>
+            <button class="bg-[#031635] text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider">Add to Bag</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="md:col-span-6 lg:col-span-4 glass-panel rounded-3xl overflow-hidden hover-lift group flex flex-col">
+        <a href="/products/aurum-onda" class="aspect-square relative bg-white block overflow-hidden">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLZ8EVYSQYQcR4v0O8JvDvCSOmv2M99X31uSDDKCMAD4n75XzXRf7CSQrDz81GZWG-9KvvQzXUZOPcRJjz3qT3m0PLunGkoGUwk7OigEV-bQqrI0k-ZE2p2vf67lHwxQQAMeHNKoALWRZroKV-yIYzJBEXbDcQC07You2gS0DChAhng3CCee12-FUHBRc9671cTlOswd_tsz5SflQE6L4R0HlZeIH7VsT-o5srd5QDAYZA8mCwGtFwgQ" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Spatial Drape Trousers" />
+        </a>
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-widest text-[#70585b] font-semibold">Tailoring · Edition 04</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#031635] mt-1">Spatial Drape Trousers</h3>
+          </div>
+          <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#031635]/10">
+            <span class="text-lg font-bold text-[#031635]">$720.00</span>
+            <button class="bg-[#031635] text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider">Add to Bag</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="md:col-span-6 lg:col-span-4 glass-panel rounded-3xl overflow-hidden hover-lift group flex flex-col">
+        <a href="/products/aurum-onda" class="aspect-square relative bg-white block overflow-hidden">
+          <img src="https://lh3.googleusercontent.com/aida/AP1WRLvKZ5LDIRYOddqxqKBSi5T3dK2VVK8SFnBB6R4rmAsZeXAvfdw5Znd8cEJQpu_Nf8CI23V6qUNkIQGwQ0r5bTfI_6ZhmpxHF4L1kbDpwVKZZ0XXS8JrDAaO6f86ZHojw-p3UvYiIJg2cu8-15YEsf_WJgyGyXqQshPe5ysOpuef_WUuY9uWdgFk6prsI8wXbdhwG1P-1oJU9mC4UPq6-I7sU4bJ5MP78g6yrihWMVzPjt41Jt3sadD21wU" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Architectural Trench Coat" />
+        </a>
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-widest text-[#70585b] font-semibold">Outerwear · Edition 04</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#031635] mt-1">Architectural Trench</h3>
+          </div>
+          <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#031635]/10">
+            <span class="text-lg font-bold text-[#031635]">$1,680.00</span>
+            <button class="bg-[#031635] text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider">Add to Bag</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="md:col-span-6 lg:col-span-4 glass-panel rounded-3xl overflow-hidden hover-lift group flex flex-col">
+        <a href="/products/aurum-onda" class="aspect-square relative bg-white block overflow-hidden">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLZ8EVYSQYQcR4v0O8JvDvCSOmv2M99X31uSDDKCMAD4n75XzXRf7CSQrDz81GZWG-9KvvQzXUZOPcRJjz3qT3m0PLunGkoGUwk7OigEV-bQqrI0k-ZE2p2vf67lHwxQQAMeHNKoALWRZroKV-yIYzJBEXbDcQC07You2gS0DChAhng3CCee12-FUHBRc9671cTlOswd_tsz5SflQE6L4R0HlZeIH7VsT-o5srd5QDAYZA8mCwGtFwgQ" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Prism Monolith Bag" />
+        </a>
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-widest text-[#70585b] font-semibold">Leather Goods</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#031635] mt-1">Prism Monolith Bag</h3>
+          </div>
+          <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#031635]/10">
+            <span class="text-lg font-bold text-[#031635]">$940.00</span>
+            <button class="bg-[#031635] text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider">Add to Bag</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="md:col-span-6 lg:col-span-4 glass-panel rounded-3xl overflow-hidden hover-lift group flex flex-col">
+        <a href="/products/aurum-onda" class="aspect-square relative bg-white block overflow-hidden">
+          <img src="https://lh3.googleusercontent.com/aida/AP1WRLvKZ5LDIRYOddqxqKBSi5T3dK2VVK8SFnBB6R4rmAsZeXAvfdw5Znd8cEJQpu_Nf8CI23V6qUNkIQGwQ0r5bTfI_6ZhmpxHF4L1kbDpwVKZZ0XXS8JrDAaO6f86ZHojw-p3UvYiIJg2cu8-15YEsf_WJgyGyXqQshPe5ysOpuef_WUuY9uWdgFk6prsI8wXbdhwG1P-1oJU9mC4UPq6-I7sU4bJ5MP78g6yrihWMVzPjt41Jt3sadD21wU" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Aerospace Visor Frames" />
+        </a>
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <div>
+            <span class="text-[10px] uppercase tracking-widest text-[#70585b] font-semibold">Eyewear</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#031635] mt-1">Aerospace Visor Frames</h3>
+          </div>
+          <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#031635]/10">
+            <span class="text-lg font-bold text-[#031635]">$560.00</span>
             <button class="bg-[#031635] text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider">Add to Bag</button>
           </div>
         </div>

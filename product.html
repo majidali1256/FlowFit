@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aurum &amp; Onda — Flow Wear Studio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#031635',
+            'primary-container': '#1a2b4b',
+            secondary: '#70585b',
+            'secondary-fixed': '#fbdbde',
+            background: '#fbf8fc',
+            surface: '#fbf8fc',
+            'surface-container-lowest': '#ffffff',
+            'surface-container-low': '#f5f3f6',
+            'surface-container': '#efedf0',
+            'on-surface': '#1b1b1e',
+            'on-surface-variant': '#44474e',
+            outline: '#75777f',
+            'outline-variant': '#c5c6cf'
+          },
+          fontFamily: {
+            'headline-md': ['Playfair Display', 'serif'],
+            'body-md': ['Inter', 'sans-serif'],
+            'display-lg': ['Playfair Display', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="assets/css/theme.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body class="bg-background text-on-surface antialiased relative min-h-screen">
+
+  <canvas id="global-shader-canvas" class="fixed inset-0 z-[-1] pointer-events-none opacity-40"></canvas>
+
+  <!-- Top Navigation -->
+  <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-primary/10 shadow-sm transition-all duration-300">
+    <div class="flex justify-between items-center max-w-[1280px] mx-auto px-6 md:px-16 py-4">
+      <div class="flex items-center">
+        <button id="drawer-toggle" class="text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90 mr-4" aria-label="Open Menu">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <a href="index.html" class="font-headline-md text-2xl md:text-3xl font-bold tracking-tight text-primary">Flow Wear</a>
+      </div>
+
+      <div class="hidden md:flex space-x-8">
+        <a href="index.html" class="text-sm font-semibold tracking-wider text-on-surface-variant hover:text-primary transition-colors">Home</a>
+        <a href="collections.html" class="text-sm font-semibold tracking-wider text-on-surface-variant hover:text-primary transition-colors">Collections</a>
+        <a href="lookbook.html" class="text-sm font-semibold tracking-wider text-on-surface-variant hover:text-primary transition-colors">Lookbook</a>
+        <a href="studio.html" class="text-sm font-semibold tracking-wider text-on-surface-variant hover:text-primary transition-colors">3D Studio</a>
+      </div>
+
+      <div class="flex space-x-4 items-center">
+        <button class="cart-toggle-btn relative text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90" aria-label="Shopping Bag">
+          <span class="material-symbols-outlined">shopping_bag</span>
+          <span class="cart-count-badge absolute -top-1.5 -right-1.5 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">1</span>
+        </button>
+        <button class="text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90" aria-label="Account">
+          <span class="material-symbols-outlined">person</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="w-full max-w-[1280px] mx-auto px-6 md:px-16 pt-32 pb-20 min-h-screen grid grid-cols-1 lg:grid-cols-12 gap-12">
+    <!-- Left Column: Imagery & 3D Interactive -->
+    <div class="lg:col-span-7 flex flex-col gap-6">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-on-surface-variant text-xs font-semibold uppercase tracking-widest">
+        <a href="collections.html" class="hover:text-primary transition-colors">Collections</a>
+        <span class="material-symbols-outlined text-sm">chevron_right</span>
+        <span class="text-primary">Aurum &amp; Onda</span>
+      </nav>
+
+      <!-- Main Product Photo -->
+      <div class="w-full aspect-[4/3] md:aspect-[16/10] bg-surface-container-lowest rounded-3xl overflow-hidden relative shadow-[0px_10px_30px_rgba(26,43,75,0.05)] border border-primary/5 flex items-center justify-center p-8">
+        <img src="https://lh3.googleusercontent.com/aida/AP1WRLvKZ5LDIRYOddqxqKBSi5T3dK2VVK8SFnBB6R4rmAsZeXAvfdw5Znd8cEJQpu_Nf8CI23V6qUNkIQGwQ0r5bTfI_6ZhmpxHF4L1kbDpwVKZZ0XXS8JrDAaO6f86ZHojw-p3UvYiIJg2cu8-15YEsf_WJgyGyXqQshPe5ysOpuef_WUuY9uWdgFk6prsI8wXbdhwG1P-1oJU9mC4UPq6-I7sU4bJ5MP78g6yrihWMVzPjt41Jt3sadD21wU" alt="Aurum Wave Bag" class="max-h-[380px] w-auto object-contain mix-blend-multiply" />
+        <div class="absolute top-6 left-6 bg-secondary-fixed text-primary text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">
+          Spatial Edition
+        </div>
+      </div>
+
+      <!-- 3D Integration Block -->
+      <div class="w-full h-80 bg-surface-container-lowest rounded-3xl overflow-hidden relative shadow-[0px_10px_30px_rgba(26,43,75,0.05)] border border-primary/5 group">
+        <div class="absolute top-6 left-6 right-6 z-10 pointer-events-none flex justify-between items-center">
+          <span class="text-xs font-semibold text-primary/60 uppercase tracking-widest">Interactive Material Viewer · Drag to Examine</span>
+          <span class="material-symbols-outlined text-primary/60">360</span>
+        </div>
+        <div data-threejs="spatial-artifact" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
+      </div>
+    </div>
+
+    <!-- Right Column: Product Customization & Specs Panel -->
+    <div class="lg:col-span-5">
+      <div class="glass-panel rounded-3xl p-8 shadow-[0px_10px_30px_rgba(26,43,75,0.05)] sticky top-32 flex flex-col gap-8">
+        <div>
+          <h1 class="font-headline-md text-4xl md:text-5xl font-bold text-primary">Aurum &amp; Onda</h1>
+          <p class="text-2xl font-bold text-primary mt-2">$1,250</p>
+        </div>
+
+        <p class="text-on-surface-variant leading-relaxed">
+          A masterclass in spatial form and material science. Merging aerospace-grade titanium alloy frames with ultra-soft, responsive memory-suede for an adaptive silhouette.
+        </p>
+
+        <!-- Color Selection -->
+        <div class="space-y-3">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-semibold text-primary uppercase tracking-widest">Colorway</span>
+            <span id="selected-color-label" class="text-xs font-semibold text-secondary">Soft Blush &amp; Deep Blue</span>
+          </div>
+          <div class="flex gap-4">
+            <button class="w-11 h-11 rounded-full border-2 border-primary bg-secondary-fixed shadow-inner ring-2 ring-primary/20" onclick="document.getElementById('selected-color-label').textContent='Soft Blush & Deep Blue'"></button>
+            <button class="w-11 h-11 rounded-full border border-outline-variant bg-[#1a2b4b] shadow-inner hover:border-primary transition-colors" onclick="document.getElementById('selected-color-label').textContent='Obsidian Titanium'"></button>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex flex-col gap-4 pt-4 border-t border-primary/10">
+          <button class="add-to-bag-btn w-full bg-primary text-on-primary font-semibold text-sm py-4 rounded-xl btn-hover-lift uppercase tracking-widest flex items-center justify-center gap-3"
+            data-id="aurum-onda-01"
+            data-name="The Aurum Wave Bag"
+            data-price="1250"
+            data-image="https://lh3.googleusercontent.com/aida/AP1WRLvKZ5LDIRYOddqxqKBSi5T3dK2VVK8SFnBB6R4rmAsZeXAvfdw5Znd8cEJQpu_Nf8CI23V6qUNkIQGwQ0r5bTfI_6ZhmpxHF4L1kbDpwVKZZ0XXS8JrDAaO6f86ZHojw-p3UvYiIJg2cu8-15YEsf_WJgyGyXqQshPe5ysOpuef_WUuY9uWdgFk6prsI8wXbdhwG1P-1oJU9mC4UPq6-I7sU4bJ5MP78g6yrihWMVzPjt41Jt3sadD21wU"
+            data-color="Soft Blush & Deep Blue">
+            Add to Bag — $1,250
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+          </button>
+          <a href="studio.html" class="w-full bg-secondary-fixed text-primary font-semibold text-sm py-4 rounded-xl btn-hover-lift uppercase tracking-widest text-center block">
+            Book Studio 3D Consultation
+          </a>
+        </div>
+
+        <!-- Spatial Specs Bento Grid -->
+        <div class="flex flex-col gap-4 pt-4 border-t border-primary/10">
+          <h3 class="font-headline-md text-xl font-bold text-primary">Spatial Specs</h3>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-surface-container-lowest p-4 rounded-2xl border border-primary/5 flex flex-col gap-1">
+              <span class="material-symbols-outlined text-primary text-xl">architecture</span>
+              <span class="text-xs font-semibold text-primary uppercase tracking-wider mt-1">Architecture</span>
+              <span class="text-sm text-on-surface-variant">Tensioned Titanium</span>
+            </div>
+            <div class="bg-surface-container-lowest p-4 rounded-2xl border border-primary/5 flex flex-col gap-1">
+              <span class="material-symbols-outlined text-primary text-xl">texture</span>
+              <span class="text-xs font-semibold text-primary uppercase tracking-wider mt-1">Textile</span>
+              <span class="text-sm text-on-surface-variant">Adaptive Micro-Suede</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full py-12 bg-surface border-t border-primary/10 mt-12">
+    <div class="max-w-[1280px] mx-auto px-6 md:px-16 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="font-headline-md text-2xl font-bold text-primary">Flow Wear</div>
+      <div class="flex flex-wrap justify-center gap-8">
+        <a href="collections.html" class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors">Collections</a>
+        <a href="lookbook.html" class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors">Lookbook</a>
+        <a href="studio.html" class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors">3D Studio</a>
+      </div>
+      <div class="text-xs text-on-surface-variant">© 2024 Flow Wear Studio. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Slide-Out Navigation Drawer -->
+  <aside id="side-drawer" class="fixed inset-0 z-[100] pointer-events-none opacity-0 transition-opacity duration-300">
+    <div id="drawer-overlay" class="absolute inset-0 bg-primary/25 backdrop-blur-sm"></div>
+    <div id="drawer-content" class="absolute top-0 left-0 h-full w-80 glass-panel shadow-2xl transform -translate-x-full transition-transform duration-500 ease-out flex flex-col p-8 bg-surface">
+      <div class="flex justify-between items-center mb-8">
+        <span class="font-headline-md text-2xl font-bold text-primary">Menu</span>
+        <button id="drawer-close" class="text-primary hover:text-secondary transition-colors">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-6">
+        <a href="index.html" class="text-lg font-semibold text-primary hover:text-secondary transition-colors">Home</a>
+        <a href="collections.html" class="text-lg font-semibold text-primary hover:text-secondary transition-colors">All Collections</a>
+        <a href="product.html" class="text-lg font-semibold text-primary hover:text-secondary transition-colors">Aurum &amp; Onda Detail</a>
+        <a href="lookbook.html" class="text-lg font-semibold text-primary hover:text-secondary transition-colors">The Lookbook</a>
+        <a href="studio.html" class="text-lg font-semibold text-primary hover:text-secondary transition-colors">3D Studio</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Slide-Out Cart Drawer -->
+  <aside id="cart-drawer" class="fixed inset-0 z-[110] pointer-events-none opacity-0 transition-opacity duration-300">
+    <div id="cart-overlay" class="absolute inset-0 bg-primary/25 backdrop-blur-sm"></div>
+    <div id="cart-drawer-content" class="absolute top-0 right-0 h-full w-full max-w-md glass-panel shadow-2xl transform translate-x-full transition-transform duration-500 ease-out flex flex-col bg-surface">
+      <div class="p-6 border-b border-primary/10 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">shopping_bag</span>
+          <span class="font-headline-md text-xl font-bold text-primary">Shopping Bag</span>
+        </div>
+        <button id="cart-close" class="text-primary hover:opacity-60 transition-opacity">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
+      <div class="p-6 border-t border-primary/10 bg-surface-container-lowest/80 space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-on-surface-variant">Subtotal</span>
+          <span id="cart-subtotal-price" class="font-headline-md text-xl font-bold text-primary">$1,250.00</span>
+        </div>
+        <button class="w-full bg-primary text-on-primary font-semibold text-sm py-4 rounded-lg btn-hover-lift uppercase tracking-widest">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <div id="cart-toast" class="fixed bottom-6 right-6 z-[120] bg-primary text-on-primary px-6 py-4 rounded-xl shadow-2xl transform translate-y-24 opacity-0 flex items-center gap-3">
+    <span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+    <span id="cart-toast-title" class="text-sm font-semibold">Item added to your bag</span>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

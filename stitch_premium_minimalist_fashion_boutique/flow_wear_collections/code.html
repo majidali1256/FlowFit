@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Flow Wear - Collections</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "surface-container": "#efedf0",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#081b3a",
+                        "on-primary-fixed-variant": "#364768",
+                        "on-secondary-container": "#755d5f",
+                        "surface-tint": "#4e5e81",
+                        "surface-container-low": "#f5f3f6",
+                        "outline": "#75777f",
+                        "inverse-surface": "#303033",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "secondary": "#70585b",
+                        "surface-container-highest": "#e4e2e5",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "on-surface-variant": "#44474e",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c5c6cf",
+                        "tertiary-container": "#3e2700",
+                        "on-tertiary-container": "#b08d5b",
+                        "secondary-fixed-dim": "#debfc2",
+                        "on-primary-container": "#8293b8",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dbd9dc",
+                        "secondary-fixed": "#fbdbde",
+                        "primary": "#031635",
+                        "on-secondary-fixed-variant": "#574144",
+                        "inverse-on-surface": "#f2f0f3",
+                        "surface-variant": "#e4e2e5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#281719",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#ffddb1",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "background": "#fbf8fc",
+                        "secondary-container": "#f8d8db",
+                        "primary-container": "#1a2b4b",
+                        "surface": "#fbf8fc",
+                        "inverse-primary": "#b6c6ef",
+                        "on-surface": "#1b1b1e",
+                        "surface-bright": "#fbf8fc",
+                        "on-tertiary-fixed": "#291800",
+                        "tertiary": "#231400",
+                        "surface-container-high": "#e9e7eb",
+                        "primary-fixed": "#d8e2ff",
+                        "on-background": "#1b1b1e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "stack-md": "24px",
+                        "stack-lg": "48px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "stack-sm": "12px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(251, 248, 252, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(3, 22, 53, 0.1);
+        }
+        .soft-shadow {
+            box-shadow: 0px 10px 30px rgba(26, 43, 75, 0.05);
+        }
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 20px 40px rgba(26, 43, 75, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased relative min-h-screen selection:bg-secondary-container selection:text-primary">
+<!-- Background Shader -->
+<div class="fixed inset-0 z-[-1] pointer-events-none opacity-40">
+</div>
+<div class="fixed inset-0 z-[-2] pointer-events-none bg-gradient-to-br from-surface to-secondary-container/20"></div>
+<!-- Top Navigation (Shared Component) -->
+<nav class="bg-surface/80 dark:bg-primary/80 backdrop-blur-xl border-b border-primary/10 dark:border-primary-fixed-dim/10 shadow-sm fixed top-0 w-full z-50 transition-all duration-300">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-desktop py-4">
+<!-- Left Nav -->
+<div class="hidden md:flex items-center gap-6"><button class="flex items-center justify-center p-2 text-primary dark:text-primary-fixed-dim hover:opacity-70 transition-opacity" onclick="document.getElementById('side-drawer').classList.remove('translate-x-full')"><span class="material-symbols-outlined">menu</span></button>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-label-md text-label-md" href="#">Collections</a>
+</div>
+<!-- Brand -->
+<a class="font-headline-lg text-headline-lg font-bold tracking-tight text-primary dark:text-primary-fixed-dim mx-auto md:mx-0 scale-95 active:scale-90 transition-transform" href="#">Flow Wear</a>
+<!-- Right Nav & Actions -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-primary dark:text-primary-fixed-dim">
+<button class="hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-[100px] pb-stack-lg max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Header & Filters -->
+<header class="mb-stack-lg flex flex-col md:flex-row justify-between items-end gap-stack-md pt-stack-md">
+<div class="max-w-2xl">
+<h1 class="font-display-lg text-display-lg text-primary mb-4">Curated Collection</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Designed for movement.</p>
+</div>
+</header>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Featured Masterpiece -->
+<article class="md:col-span-12 lg:col-span-8 glass-panel rounded-xl overflow-hidden hover-lift group relative mb-gutter lg:mb-0">
+<div class="aspect-[16/9] lg:aspect-[2/1] relative bg-surface-container-lowest">
+<img alt="Masterpiece Item" class="w-full h-full object-contain mix-blend-multiply p-8" src="https://lh3.googleusercontent.com/aida/AP1WRLvKZ5LDIRYOddqxqKBSi5T3dK2VVK8SFnBB6R4rmAsZeXAvfdw5Znd8cEJQpu_Nf8CI23V6qUNkIQGwQ0r5bTfI_6ZhmpxHF4L1kbDpwVKZZ0XXS8JrDAaO6f86ZHojw-p3UvYiIJg2cu8-15YEsf_WJgyGyXqQshPe5ysOpuef_WUuY9uWdgFk6prsI8wXbdhwG1P-1oJU9mC4UPq6-I7sU4bJ5MP78g6yrihWMVzPjt41Jt3sadD21wU"/>
+</div>
+<div class="p-8 flex justify-between items-end">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary mb-2">The Aurum Wave Bag</h2>
+</div>
+<div class="text-right">
+<p class="font-label-md text-label-md text-primary mb-4">$1,250</p>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-md text-label-md hover:bg-primary/90 transition-colors">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+</article>
+<!-- Product Card 1 -->
+<article class="md:col-span-6 lg:col-span-4 glass-panel rounded-xl overflow-hidden hover-lift group flex flex-col">
+<div class="aspect-square relative bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="A minimalist, futuristic wearable tech accessory, like a smart ring or sleek geometric bracelet, resting on a stark white architectural plinth. Soft, diffused lighting creates gentle shadows. High-end editorial photography style, conveying luxury and modern technology. Soft blush pink and primary blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLZ8EVYSQYQcR4v0O8JvDvCSOmv2M99X31uSDDKCMAD4n75XzXRf7CSQrDz81GZWG-9KvvQzXUZOPcRJjz3qT3m0PLunGkoGUwk7OigEV-bQqrI0k-ZE2p2vf67lHwxQQAMeHNKoALWRZroKV-yIYzJBEXbDcQC07You2gS0DChAhng3CCee12-FUHBRc9671cTlOswd_tsz5SflQE6L4R0HlZeIH7VsT-o5srd5QDAYZA8mCwGtFwgQ"/>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1 text-[22px]">Cylindrical Cuff</h3>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary">$340</span>
+<button class="text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add_circle</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 2 -->
+<article class="md:col-span-6 lg:col-span-4 glass-panel rounded-xl overflow-hidden hover-lift group flex flex-col">
+<div class="aspect-square relative bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="A highly structured, avant-garde piece of athleisure wear, perhaps a modular jacket or structured crop top, displayed flat on a clean, light grey surface. The fabric looks technical and premium, perhaps neoprene or a sleek matte blend. Lighting is crisp and even, highlighting the seams and construction. Subtle 3D depth, modern minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZASYxaAz1A_wfPnJHZ-571CUCBI1R34BjhhmhTo_lPJrOQzcqLYpwnLm6Q0YKKSpCZQq1wJnWtGNgyD_w9PHN02DxNNeesOE46M97KLQzgILxRpkMATwVpplvnM4_3q4uXTqLNwniZA-G2i2IHTFdcUtrjQgbqWO1fwxgzMHVNMWYB4cD3jod_0hwNXrvumDwrd9c0MrU_ftSVRma_SG_4t_Q72DS0jEWfhVaLU60lXNeWuxNSxF8MA"/>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1 text-[22px]">Modular Vest</h3>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary">$580</span>
+<button class="text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add_circle</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 3 -->
+<article class="md:col-span-6 lg:col-span-4 glass-panel rounded-xl overflow-hidden hover-lift group flex flex-col">
+<div class="aspect-square relative bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="A pair of sleek, conceptual sunglasses with a thick, geometric matte frame and mirrored lenses reflecting a soft, abstract digital environment. The sunglasses are floating slightly above a pristine white surface, casting a soft ambient shadow. The overall mood is high-tech, exclusive, and calm, utilizing a primary blue and soft pink color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmStkfJekH8fJITo4NRghCPTl7TLXTJWqwvhXs3HGbySxz31nCKsf9BCmYIsjbkm0D500jjRf1snSDrou04nhGBz3Ue-aFGxmpGtwj5QyAGgPbnAiV2N9q2shssp028NK9v6lZ_Z_5f_HHp9I_584WR47tQhW2mWRHZnOkBOcGVA6nfu_jtQAjnhZR3_Is6diCCcfiEIHCT8j845Lv2S9mfuynkkjp2RMEFq3LYvUcXMg2PK6KjaVgrg"/>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1 text-[22px]">Opaque Visor</h3>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary">$410</span>
+<button class="text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add_circle</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Product Card 4 -->
+<article class="md:col-span-6 lg:col-span-4 glass-panel rounded-xl overflow-hidden hover-lift group flex flex-col">
+<div class="aspect-square relative bg-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="A sculptural, ergonomically designed water bottle or hydration vessel made of brushed steel and matte silicone. It stands alone against a seamless, soft-focus background of gentle pastel gradients (blues and pinks). The lighting accentuates the smooth curves and premium materials, embodying a modern minimalism and soft 3D glassmorphism style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJXctBq6dGKXdU_xb_MyTNETARrPJQH2oh_wRRJP3DTeNr3wxHOTplkB1eje3uue0zd1tG9jjggeefz6BDRs0kOQR2kdYsIg93SgBRor6738jygyI0VtcDiI6LdrJPRw6mBkuPvA91wLrUazCZCvevN0N3pGXZJLBpdiRyqcg4NbqqiH68b6379JrLZcMjFbc050L2nPRPm2KMnzJNKCqxfrSR_oBAdkp7a3vbFYYGmPJzHWf9CoL3Xw"/>
+</div>
+<div class="p-6 flex-grow flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1 text-[22px]">Hydration Vessel</h3>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary">$120</span>
+<button class="text-primary hover:text-secondary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">add_circle</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<div class="mt-stack-lg flex justify-center">
+<button class="px-8 py-4 border border-outline/30 rounded-full font-label-md text-label-md text-primary hover:bg-surface-container transition-colors">
+                Load More Archive
+            </button>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="bg-surface dark:bg-primary w-full py-stack-lg border-t border-secondary-fixed-dim/30 dark:border-on-secondary-fixed-variant/30">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto px-margin-desktop gap-stack-md">
+<div class="font-headline-md text-headline-md font-semibold text-primary dark:text-primary-fixed-dim">Flow Wear</div>
+<div class="text-on-surface-variant dark:text-surface-variant font-body-md text-body-md text-sm">
+                © 2024 Flow Wear. All rights reserved.
+            </div>
+</div>
+</footer>
+<div class="fixed inset-0 z-[100] translate-x-full transition-transform duration-500 ease-in-out" id="side-drawer"><div class="absolute inset-0 bg-primary/20 backdrop-blur-sm" onclick="document.getElementById('side-drawer').classList.add('translate-x-full')"></div><div class="absolute right-0 top-0 h-full w-80 glass-panel bg-white/90 p-8 flex flex-col gap-8 shadow-2xl"><div class="flex justify-between items-center"><span class="font-headline-md text-primary">Categories</span><button class="text-primary hover:text-secondary transition-colors" onclick="document.getElementById('side-drawer').classList.add('translate-x-full')"><span class="material-symbols-outlined">close</span></button></div><nav class="flex flex-col gap-6"><a class="text-body-lg text-primary hover:text-secondary-container transition-colors border-b border-primary/5 pb-2" href="#">Jackets</a><a class="text-body-lg text-primary hover:text-secondary-container transition-colors border-b border-primary/5 pb-2" href="#">Trousers</a><a class="text-body-lg text-primary hover:text-secondary-container transition-colors border-b border-primary/5 pb-2" href="#">Casual Shirts</a><a class="text-body-lg text-primary hover:text-secondary-container transition-colors border-b border-primary/5 pb-2" href="#">Shirts</a><a class="text-body-lg text-primary hover:text-secondary-container transition-colors border-b border-primary/5 pb-2" href="#">Jeans</a><a class="text-body-lg text-primary hover:text-secondary-container transition-colors border-b border-primary/5 pb-2" href="#">Accessories</a></nav><div class="mt-auto pt-8 border-t border-primary/10"><div class="w-full h-2 bg-gradient-to-r from-primary to-secondary-container rounded-full opacity-50"></div></div></div></div>
+</body></html>

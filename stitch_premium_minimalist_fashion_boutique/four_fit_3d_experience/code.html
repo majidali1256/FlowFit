@@ -1,0 +1,372 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><meta charset="utf-8"><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#70585b",
+                        "on-secondary-fixed-variant": "#574144",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#fbf8fc",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dbd9dc",
+                        "tertiary-container": "#3e2700",
+                        "tertiary-fixed": "#ffddb1",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#f8d8db",
+                        "on-primary-container": "#8293b8",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "primary": "#031635",
+                        "surface-variant": "#e4e2e5",
+                        "on-background": "#1b1b1e",
+                        "outline-variant": "#c5c6cf",
+                        "secondary-fixed": "#fbdbde",
+                        "on-tertiary-container": "#b08d5b",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#303033",
+                        "surface-tint": "#4e5e81",
+                        "surface-container-high": "#e9e7eb",
+                        "primary-fixed": "#d8e2ff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#44474e",
+                        "surface-container-low": "#f5f3f6",
+                        "surface": "#fbf8fc",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "surface-container-highest": "#e4e2e5",
+                        "on-primary-fixed": "#081b3a",
+                        "inverse-primary": "#b6c6ef",
+                        "on-primary-fixed-variant": "#364768",
+                        "on-tertiary-fixed": "#291800",
+                        "surface-bright": "#fbf8fc",
+                        "on-surface": "#1b1b1e",
+                        "outline": "#75777f",
+                        "inverse-on-surface": "#f2f0f3",
+                        "primary-container": "#1a2b4b",
+                        "tertiary": "#231400",
+                        "secondary-fixed-dim": "#debfc2",
+                        "on-secondary-container": "#755d5f",
+                        "on-secondary-fixed": "#281719",
+                        "surface-container": "#efedf0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "stack-md": "24px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "stack-sm": "12px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "stack-lg": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    }catch(_e){}</script></head><body class="bg-background text-on-surface antialiased overflow-x-hidden relative min-h-screen font-body-md">
+<!-- WebGL Background -->
+<div class="fixed inset-0 z-[-1] pointer-events-none opacity-40">
+<!-- STITCH_SHADER_START:ANIMATION_16 class="absolute inset-0 w-full h-full" -->
+<div class="absolute inset-0 w-full h-full" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_16" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_16');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform vec2 u_mouse;
+varying vec2 v_texCoord;
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec2 mouse = u_mouse / u_resolution;
+    
+    // Smooth flowing liquid background
+    float color1 = sin(uv.x * 3.0 + u_time * 0.5) * 0.5 + 0.5;
+    float color2 = sin(uv.y * 2.0 - u_time * 0.3) * 0.5 + 0.5;
+    
+    // Palette: White (#FFFFFF), Deep Blue (#1A2B4B), Soft Pink (#FADADD)
+    vec3 white = vec3(1.0);
+    vec3 deepBlue = vec3(0.10, 0.17, 0.29);
+    vec3 softPink = vec3(0.98, 0.85, 0.87);
+    
+    vec3 baseColor = mix(white, softPink, color1 * 0.3);
+    baseColor = mix(baseColor, deepBlue, color2 * 0.1 * (1.0 - uv.y));
+    
+    // Subtle mouse interaction
+    float dist = length(uv - mouse);
+    baseColor += softPink * (1.0 - smoothstep(0.0, 0.4, dist)) * 0.2;
+    
+    gl_FragColor = vec4(baseColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_16 -->
+</div>
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-primary/10 shadow-sm transition-all duration-300" id="main-nav">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4"><button id="drawer-toggle" class="text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90 transition-transform mr-4" aria-label="Open Menu"><span class="material-symbols-outlined">menu</span></button>
+<a class="font-headline-lg text-headline-lg font-bold tracking-tight text-primary" href="#">Flow Wear</a>
+<div class="hidden md:flex space-x-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Collections</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">New Arrivals</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Studio</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Journal</a>
+</div>
+<div class="flex space-x-4 items-center">
+<button class="text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-original-icon="shopping_bag">circle</span>
+</button>
+<button class="text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center pt-24 pb-stack-lg px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center">
+<div class="z-10 reveal text-center lg:text-left space-y-stack-sm order-2 lg:order-1">
+<h1 class="font-display-lg text-display-lg text-primary leading-tight">
+                    The Future <br class="hidden lg:block">of Form
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md mx-auto lg:mx-0">
+                    Experience the intersection of architectural precision and fluid movement. Discover our latest spatial collection.
+                </p>
+<div class="pt-4">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded hover:-translate-y-1 transition-transform duration-300 shadow-md">
+                        Explore the Experience
+                    </button>
+</div>
+</div>
+<div class="relative h-[50vh] lg:h-[80vh] w-full reveal order-1 lg:order-2">
+<div class="absolute inset-0 glass-panel rounded-2xl overflow-hidden soft-shadow">
+<!-- STITCH_THREEJS_START:ANIMATION_15 class="absolute inset-0 w-full h-full" -->
+<div class="absolute inset-0 w-full h-full" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_15" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_15');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+scene.add(ambientLight);
+const pointLight = new THREE.PointLight(0xffffff, 1);
+pointLight.position.set(5, 5, 5);
+scene.add(pointLight);
+
+// Create a modern sculpted shape (representative of 'Four Fit' high fashion)
+const geometry = new THREE.IcosahedronGeometry(1, 15);
+const material = new THREE.MeshPhongMaterial({
+    color: 0xFADADD, // Soft Pink
+    shininess: 100,
+    specular: 0x1A2B4B, // Deep Blue highlights
+});
+const sphere = new THREE.Mesh(geometry, material);
+scene.add(sphere);
+
+camera.position.z = 3;
+
+// Animation Loop
+function animate() {
+    requestAnimationFrame(animate);
+    sphere.rotation.y += 0.005;
+    sphere.rotation.x += 0.003;
+    
+    // Subtle float
+    sphere.position.y = Math.sin(Date.now() * 0.001) * 0.1;
+    
+    renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+});
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_15 -->
+</div>
+</div>
+</div>
+</section>
+<!-- 3D Gallery Feature -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop bg-surface-container-low/50 relative">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-stack-lg reveal">
+<h2 class="font-headline-md text-headline-md text-primary mb-4">Spatial Artifacts</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Curated pieces that redefine physical boundaries.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7 reveal">
+<div class="glass-panel p-8 rounded-3xl soft-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6 z-10">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-wider">Featured</span>
+</div>
+<img alt="Four Fit 3D Handbag" class="w-full h-auto object-contain transform group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXL80GskhJPAPpqZRdk2ov8dNLgCGbiJYdoKy737cxjwhZMvv4kW3on22bObNJ2qewSAWHjT4nAxmPLopNZXy-j3Slm6v-C8qnKpYQPemWIT6aYLJYCynogi_A6kP4tPUVXMXS7nd3MWq8fARtEVZBK9h7tVeQlHnzFuVYo1xBq46y5xhi5fcjfOhrZ8-ROi-5dyf4XrUS57G4dDlFCbP_sGh1ICkkgBbzLqTuEaSLinYAkq2wPscCUw">
+</div>
+</div>
+<div class="md:col-span-5 reveal space-y-6 md:pl-8 mt-8 md:mt-0">
+<h3 class="font-headline-md text-headline-md text-primary">Aurum &amp; Onda</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        A study in contradiction. Soft blush volumes constrained by a rigid, metallic-blue exoskeleton. Designed to challenge perception.
+                    </p>
+<ul class="space-y-4 pt-4 border-t border-secondary-fixed/50">
+<li class="flex items-center text-body-md text-on-surface">
+<span class="material-symbols-outlined text-secondary mr-3" data-original-icon="check_circle">circle</span>
+                            Tactile Matte Finish
+                        </li>
+<li class="flex items-center text-body-md text-on-surface">
+<span class="material-symbols-outlined text-secondary mr-3" data-original-icon="check_circle">circle</span>
+                            Ergonomic Architecture
+                        </li>
+</ul>
+<div class="pt-6">
+<button class="bg-secondary-fixed text-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-secondary-fixed-dim hover:-translate-y-0.5 transition-all duration-300">
+                            View Details
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-stack-lg bg-surface border-t border-secondary-fixed-dim/30">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-stack-md">
+<div class="font-headline-md text-headline-md font-semibold text-primary">Flow Wear</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Sustainability</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Shipping</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Returns</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Contact</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm">© 2024 Flow Wear Studio. All rights reserved.</div>
+</div>
+</footer>
+<script class="">
+        // Scroll Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop</script><div id="side-drawer" class="fixed inset-0 z-[100] pointer-events-none transition-opacity duration-500 opacity-0"><div id="drawer-overlay" class="absolute inset-0 bg-primary/20 backdrop-blur-sm"></div><aside id="drawer-content" class="absolute top-0 left-0 h-full w-80 glass-panel shadow-2xl transform -translate-x-full transition-transform duration-500 ease-out flex flex-col p-8"><div class="flex justify-between items-center mb-stack-lg"><span class="font-headline-md text-headline-md text-primary">Menu</span><button id="drawer-close" class="text-primary hover:text-secondary transition-colors"><span class="material-symbols-outlined">close</span></button></div><nav class="flex flex-col gap-6"><div class="space-y-4"><h4 class="font-label-md text-label-md text-secondary uppercase tracking-wider border-b border-secondary-fixed/50 pb-2">Collections</h4><ul class="space-y-4"><li class="group"><a href="#" class="font-body-lg text-body-lg text-on-surface hover:text-primary flex items-center transition-colors">Jackets <span class="material-symbols-outlined text-sm ml-2 opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span></a></li><li class="group"><a href="#" class="font-body-lg text-body-lg text-on-surface hover:text-primary flex items-center transition-colors">Trousers <span class="material-symbols-outlined text-sm ml-2 opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span></a></li><li class="group"><a href="#" class="font-body-lg text-body-lg text-on-surface hover:text-primary flex items-center transition-colors">Casual Shirts <span class="material-symbols-outlined text-sm ml-2 opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span></a></li><li class="group"><a href="#" class="font-body-lg text-body-lg text-on-surface hover:text-primary flex items-center transition-colors">Shirts <span class="material-symbols-outlined text-sm ml-2 opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span></a></li><li class="group"><a href="#" class="font-body-lg text-body-lg text-on-surface hover:text-primary flex items-center transition-colors">Jeans <span class="material-symbols-outlined text-sm ml-2 opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span></a></li><li class="group"><a href="#" class="font-body-lg text-body-lg text-on-surface hover:text-primary flex items-center transition-colors">Accessories <span class="material-symbols-outlined text-sm ml-2 opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span></a></li></ul></div></nav><div class="mt-auto pt-8 border-t border-secondary-fixed/50"><div class="flex gap-4"><div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm">language</span></div><div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm">location_on</span></div></div></div></aside></div><script>const drawer = document.getElementById('side-drawer');const drawerContent = document.getElementById('drawer-content');const openBtn = document.getElementById('drawer-toggle');const closeBtn = document.getElementById('drawer-close');const overlay = document.getElementById('drawer-overlay');function openDrawer() {drawer.classList.remove('pointer-events-none', 'opacity-0');drawerContent.classList.remove('-translate-x-full');document.body.style.overflow = 'hidden';}function closeDrawer() {drawer.classList.add('pointer-events-none', 'opacity-0');drawerContent.classList.add('-translate-x-full');document.body.style.overflow = '';}openBtn.addEventListener('click', openDrawer);closeBtn.addEventListener('click', closeDrawer);overlay.addEventListener('click', closeDrawer);</script></body></html>

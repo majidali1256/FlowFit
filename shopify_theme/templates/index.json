@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-digital-flagship",
+      "settings": {
+        "badge_text": "Spatial Collection 04",
+        "heading": "The Future of Form",
+        "subheading": "Architectural precision meets fluid movement. Experience responsive memory polymers and sculptural tailoring designed for modern luxury."
+      }
+    },
+    "featured_artifact": {
+      "type": "spatial-artifacts-featured",
+      "settings": {
+        "subheading": "Featured Artifact",
+        "heading": "Spatial Artifacts"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured_artifact"
+  ]
+}

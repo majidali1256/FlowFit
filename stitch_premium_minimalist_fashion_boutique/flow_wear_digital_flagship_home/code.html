@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><meta charset="utf-8"/><script id="tailwind-config">try{
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#70585b",
+                        "on-secondary-fixed-variant": "#574144",
+                        "primary-fixed-dim": "#b6c6ef",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#fbf8fc",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dbd9dc",
+                        "tertiary-container": "#3e2700",
+                        "tertiary-fixed": "#ffddb1",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#f8d8db",
+                        "on-primary-container": "#8293b8",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#e8c08a",
+                        "primary": "#031635",
+                        "surface-variant": "#e4e2e5",
+                        "on-background": "#1b1b1e",
+                        "outline-variant": "#c5c6cf",
+                        "secondary-fixed": "#fbdbde",
+                        "on-tertiary-container": "#b08d5b",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#303033",
+                        "surface-tint": "#4e5e81",
+                        "surface-container-high": "#e9e7eb",
+                        "primary-fixed": "#d8e2ff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#44474e",
+                        "surface-container-low": "#f5f3f6",
+                        "surface": "#fbf8fc",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#5d4217",
+                        "surface-container-highest": "#e4e2e5",
+                        "on-primary-fixed": "#081b3a",
+                        "inverse-primary": "#b6c6ef",
+                        "on-primary-fixed-variant": "#364768",
+                        "on-tertiary-fixed": "#291800",
+                        "surface-bright": "#fbf8fc",
+                        "on-surface": "#1b1b1e",
+                        "outline": "#75777f",
+                        "inverse-on-surface": "#f2f0f3",
+                        "primary-container": "#1a2b4b",
+                        "tertiary": "#231400",
+                        "secondary-fixed-dim": "#debfc2",
+                        "on-secondary-container": "#755d5f",
+                        "on-secondary-fixed": "#281719",
+                        "surface-container": "#efedf0"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "stack-md": "24px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "stack-sm": "12px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "stack-lg": "48px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    }catch(_e){}</script></head><body class="bg-background text-on-surface antialiased overflow-x-hidden relative min-h-screen font-body-md">
+<!-- WebGL Background -->
+<div class="fixed inset-0 z-[-1] pointer-events-none opacity-40">
+
+</div>
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-primary/10 shadow-sm transition-all duration-300" id="main-nav">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4"><button aria-label="Open Menu" class="text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90 transition-transform mr-4" id="drawer-toggle"><span class="material-symbols-outlined">menu</span></button>
+<a class="font-headline-lg text-headline-lg font-bold tracking-tight text-primary" href="#">Flow Wear</a>
+<div class="hidden md:flex space-x-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Collections</a>
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1" href="#">Studio</a>
+</div>
+<div class="flex space-x-4 items-center">
+<button class="text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-original-icon="shopping_bag">circle</span>
+</button>
+<button class="text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center pt-24 pb-stack-lg px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center">
+<div class="z-10 reveal text-center lg:text-left space-y-stack-sm order-2 lg:order-1">
+<h1 class="font-display-lg text-display-lg text-primary leading-tight">
+                    The Future <br class="hidden lg:block"/>of Form
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md mx-auto lg:mx-0">
+                    Architectural precision meets fluid movement.
+                </p>
+<div class="pt-4">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-8 py-4 rounded hover:-translate-y-1 transition-transform duration-300 shadow-md">
+                        Explore
+                    </button>
+</div>
+</div>
+<div class="relative h-[50vh] lg:h-[80vh] w-full reveal order-1 lg:order-2">
+<div class="absolute inset-0 glass-panel rounded-2xl overflow-hidden soft-shadow">
+
+</div>
+</div>
+</div>
+</section>
+<!-- 3D Gallery Feature -->
+<section class="py-stack-lg px-margin-mobile md:px-margin-desktop bg-surface-container-low/50 relative">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-stack-lg reveal">
+<h2 class="font-headline-md text-headline-md text-primary mb-4">Spatial Artifacts</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-7 reveal">
+<div class="glass-panel p-8 rounded-3xl soft-shadow relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6 z-10">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-4 py-2 rounded-full font-label-sm text-label-sm uppercase tracking-wider">Featured</span>
+</div>
+<img alt="Four Fit 3D Handbag" class="w-full h-auto object-contain transform group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXL80GskhJPAPpqZRdk2ov8dNLgCGbiJYdoKy737cxjwhZMvv4kW3on22bObNJ2qewSAWHjT4nAxmPLopNZXy-j3Slm6v-C8qnKpYQPemWIT6aYLJYCynogi_A6kP4tPUVXMXS7nd3MWq8fARtEVZBK9h7tVeQlHnzFuVYo1xBq46y5xhi5fcjfOhrZ8-ROi-5dyf4XrUS57G4dDlFCbP_sGh1ICkkgBbzLqTuEaSLinYAkq2wPscCUw"/>
+</div>
+</div>
+<div class="md:col-span-5 reveal space-y-6 md:pl-8 mt-8 md:mt-0">
+<h3 class="font-headline-md text-headline-md text-primary">Aurum &amp; Onda</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        A study in contradiction.
+                    </p>
+<div class="pt-6">
+<button class="bg-secondary-fixed text-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-secondary-fixed-dim hover:-translate-y-0.5 transition-all duration-300">
+                            Discover
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-stack-lg bg-surface border-t border-secondary-fixed-dim/30">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-stack-md">
+<div class="font-headline-md text-headline-md font-semibold text-primary">Flow Wear</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Contact</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant text-sm">© 2024 Flow Wear. All rights reserved.</div>
+</div>
+</footer>
+<script class="">
+        // Scroll Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
+    </script><div class="fixed inset-0 z-[100] pointer-events-none transition-opacity duration-500 opacity-0" id="side-drawer"><div class="absolute inset-0 bg-primary/20 backdrop-blur-sm" id="drawer-overlay"></div><aside class="absolute top-0 left-0 h-full w-80 glass-panel shadow-2xl transform -translate-x-full transition-transform duration-500 ease-out flex flex-col p-8" id="drawer-content"><div class="flex justify-between items-center mb-stack-lg"><span class="font-headline-md text-headline-md text-primary">Menu</span><button class="text-primary hover:text-secondary transition-colors" id="drawer-close"><span class="material-symbols-outlined">close</span></button></div><nav class="flex flex-col gap-6"><div class="space-y-4"><h4 class="font-label-md text-label-md text-secondary uppercase tracking-wider border-b border-secondary-fixed/50 pb-2">Collections</h4><ul class="space-y-4"><li class="group"><a class="font-body-lg text-body-lg text-on-surface hover:text-primary flex items-center transition-colors" href="#">Jackets <span class="material-symbols-outlined text-sm ml-2 opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span></a></li><li class="group"><a class="font-body-lg text-body-lg text-on-surface hover:text-primary flex items-center transition-colors" href="#">Trousers <span class="material-symbols-outlined text-sm ml-2 opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span></a></li><li class="group"><a class="font-body-lg text-body-lg text-on-surface hover:text-primary flex items-center transition-colors" href="#">Casual Shirts <span class="material-symbols-outlined text-sm ml-2 opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span></a></li><li class="group"><a class="font-body-lg text-body-lg text-on-surface hover:text-primary flex items-center transition-colors" href="#">Shirts <span class="material-symbols-outlined text-sm ml-2 opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span></a></li><li class="group"><a class="font-body-lg text-body-lg text-on-surface hover:text-primary flex items-center transition-colors" href="#">Jeans <span class="material-symbols-outlined text-sm ml-2 opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span></a></li></ul></div></nav><div class="mt-auto pt-8 border-t border-secondary-fixed/50"><div class="flex gap-4"><div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm">language</span></div><div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm">location_on</span></div></div></div></aside></div><script>const drawer = document.getElementById('side-drawer');const drawerContent = document.getElementById('drawer-content');const openBtn = document.getElementById('drawer-toggle');const closeBtn = document.getElementById('drawer-close');const overlay = document.getElementById('drawer-overlay');function openDrawer() {drawer.classList.remove('pointer-events-none', 'opacity-0');drawerContent.classList.remove('-translate-x-full');document.body.style.overflow = 'hidden';}function closeDrawer() {drawer.classList.add('pointer-events-none', 'opacity-0');drawerContent.classList.add('-translate-x-full');document.body.style.overflow = '';}openBtn.addEventListener('click', openDrawer);closeBtn.addEventListener('click', closeDrawer);overlay.addEventListener('click', closeDrawer);</script></body></html>

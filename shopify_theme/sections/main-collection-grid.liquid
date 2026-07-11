@@ -1,0 +1,55 @@
+<div class="max-w-[1280px] mx-auto px-6 md:px-16 pt-8 pb-20">
+  <header class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+    <div>
+      <h1 class="font-headline-md text-4xl md:text-6xl text-[#031635] font-bold mb-3">{{ collection.title | default: 'Curated Collection' }}</h1>
+      <p class="text-lg text-[#44474e]">{{ collection.description | default: 'Designed for fluidity, movement, and architectural balance.' }}</p>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+    {% for product in collection.products %}
+      <article class="md:col-span-6 lg:col-span-4 glass-panel rounded-3xl overflow-hidden hover-lift group flex flex-col">
+        <a href="{{ product.url }}" class="aspect-square relative bg-white block overflow-hidden">
+          <img src="{{ product.featured_image | img_url: '600x600', crop: 'center' }}" alt="{{ product.title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+        </a>
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <a href="{{ product.url }}">
+            <span class="text-[10px] uppercase tracking-widest text-[#70585b] font-semibold">{{ product.type | default: 'Spatial Edition' }}</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#031635] mt-1">{{ product.title }}</h3>
+          </a>
+          <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#031635]/10">
+            <span class="text-lg font-bold text-[#031635]">{{ product.price | money }}</span>
+            <form action="/cart/add" method="post">
+              <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+              <button type="submit" class="bg-[#031635] text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider btn-hover-lift">
+                Add to Bag
+              </button>
+            </form>
+          </div>
+        </div>
+      </article>
+    {% else %}
+      <!-- Fallback static cards when viewed without a collection populated -->
+      <article class="md:col-span-6 lg:col-span-4 glass-panel rounded-3xl overflow-hidden hover-lift group flex flex-col">
+        <a href="/products/aurum-wave" class="aspect-square relative bg-white block overflow-hidden">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLZ8EVYSQYQcR4v0O8JvDvCSOmv2M99X31uSDDKCMAD4n75XzXRf7CSQrDz81GZWG-9KvvQzXUZOPcRJjz3qT3m0PLunGkoGUwk7OigEV-bQqrI0k-ZE2p2vf67lHwxQQAMeHNKoALWRZroKV-yIYzJBEXbDcQC07You2gS0DChAhng3CCee12-FUHBRc9671cTlOswd_tsz5SflQE6L4R0HlZeIH7VsT-o5srd5QDAYZA8mCwGtFwgQ" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Cylindrical Cuff" />
+        </a>
+        <div class="p-6 flex-grow flex flex-col justify-between">
+          <span class="text-[10px] uppercase tracking-widest text-[#70585b] font-semibold">Spatial Accessory</span>
+          <h3 class="font-headline-md text-2xl font-bold text-[#031635] mt-1">Cylindrical Cuff</h3>
+          <div class="flex justify-between items-center mt-6 pt-4 border-t border-[#031635]/10">
+            <span class="text-lg font-bold text-[#031635]">$340.00</span>
+            <button class="bg-[#031635] text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider">Add to Bag</button>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "settings": []
+}
+{% endschema %}

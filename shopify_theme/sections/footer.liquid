@@ -1,0 +1,30 @@
+<footer class="w-full py-12 bg-[#fbf8fc] border-t border-[#031635]/10 mt-20">
+  <div class="max-w-[1280px] mx-auto px-6 md:px-16 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="font-headline-md text-2xl font-bold text-[#031635]">{{ shop.name | default: 'Flow Wear' }}</div>
+    <div class="flex flex-wrap justify-center gap-8">
+      {% for link in linklists[section.settings.footer_menu].links %}
+        <a href="{{ link.url }}" class="text-xs font-semibold uppercase tracking-wider text-[#44474e] hover:text-[#031635] transition-colors">{{ link.title }}</a>
+      {% else %}
+        <a href="/collections/all" class="text-xs font-semibold uppercase tracking-wider text-[#44474e] hover:text-[#031635]">Collections</a>
+        <a href="/pages/lookbook" class="text-xs font-semibold uppercase tracking-wider text-[#44474e] hover:text-[#031635]">Lookbook</a>
+        <a href="/pages/studio" class="text-xs font-semibold uppercase tracking-wider text-[#44474e] hover:text-[#031635]">3D Studio</a>
+        <a href="/policies/privacy-policy" class="text-xs font-semibold uppercase tracking-wider text-[#44474e] hover:text-[#031635]">Privacy</a>
+      {% endfor %}
+    </div>
+    <div class="text-xs text-[#44474e]">© {{ 'now' | date: "%Y" }} {{ shop.name }}. All rights reserved.</div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer Menu",
+      "default": "footer"
+    }
+  ]
+}
+{% endschema %}

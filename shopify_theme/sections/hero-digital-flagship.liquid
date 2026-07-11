@@ -1,0 +1,93 @@
+<section class="min-h-[85vh] flex items-center justify-center px-6 md:px-16">
+  <div class="max-w-[1280px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-6 z-10 text-center lg:text-left space-y-6 order-2 lg:order-1">
+      <span class="bg-[#fbdbde] text-[#031635] px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest inline-block">{{ section.settings.badge_text }}</span>
+      <h1 class="font-headline-md text-5xl md:text-7xl text-[#031635] font-bold leading-tight">
+        {{ section.settings.heading }}
+      </h1>
+      <p class="text-lg text-[#44474e] max-w-lg mx-auto lg:mx-0 leading-relaxed">
+        {{ section.settings.subheading }}
+      </p>
+      <div class="pt-4 flex flex-wrap gap-4 justify-center lg:justify-start">
+        <a href="{{ section.settings.primary_btn_url }}" class="bg-[#031635] text-white text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-lg btn-hover-lift shadow-md inline-flex items-center gap-2">
+          {{ section.settings.primary_btn_label }}
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </a>
+        <a href="{{ section.settings.secondary_btn_url }}" class="bg-white border border-[#031635]/20 text-[#031635] text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-lg btn-hover-lift">
+          {{ section.settings.secondary_btn_label }}
+        </a>
+      </div>
+    </div>
+
+    <div class="lg:col-span-6 relative h-[420px] lg:h-[560px] w-full order-1 lg:order-2">
+      <div class="absolute inset-0 glass-panel rounded-3xl overflow-hidden soft-shadow relative flex flex-col justify-between p-6">
+        <div class="flex justify-between items-center z-10">
+          <span class="font-mono text-xs text-[#031635]/60 tracking-widest uppercase">3D SPATIAL ARTIFACT VIEW</span>
+          <span class="material-symbols-outlined text-[#031635]/60">360</span>
+        </div>
+
+        <div data-threejs="spatial-artifact" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"></div>
+
+        <div class="z-10 bg-[#fbf8fc]/80 backdrop-blur-md rounded-xl p-4 border border-[#031635]/10 max-w-xs">
+          <p class="text-xs font-semibold text-[#031635] uppercase tracking-wider">Touch &amp; Drag to Rotate</p>
+          <p class="text-xs text-[#44474e] mt-0.5">Icosahedron Spatial Weave · #FADADD Soft Pink</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Spatial Hero Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Spatial Collection 04"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Future of Form"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Architectural precision meets fluid movement. Experience responsive memory polymers and sculptural tailoring designed for modern luxury."
+    },
+    {
+      "type": "text",
+      "id": "primary_btn_label",
+      "label": "Primary Button Label",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "primary_btn_url",
+      "label": "Primary Button URL",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "secondary_btn_label",
+      "label": "Secondary Button Label",
+      "default": "Interactive 3D Studio"
+    },
+    {
+      "type": "url",
+      "id": "secondary_btn_url",
+      "label": "Secondary Button URL",
+      "default": "/pages/studio"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Spatial Hero Section"
+    }
+  ]
+}
+{% endschema %}

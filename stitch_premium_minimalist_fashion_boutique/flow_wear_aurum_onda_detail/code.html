@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aurum &amp; Onda - Flow Wear</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-secondary": "#ffffff",
+                "on-surface": "#1b1b1e",
+                "on-secondary-fixed-variant": "#574144",
+                "error-container": "#ffdad6",
+                "tertiary-fixed": "#ffddb1",
+                "surface-container-highest": "#e4e2e5",
+                "secondary-container": "#f8d8db",
+                "tertiary-container": "#3e2700",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary-fixed": "#281719",
+                "on-secondary-container": "#755d5f",
+                "background": "#fbf8fc",
+                "outline-variant": "#c5c6cf",
+                "error": "#ba1a1a",
+                "outline": "#75777f",
+                "on-tertiary": "#ffffff",
+                "on-error-container": "#93000a",
+                "on-primary-container": "#8293b8",
+                "surface-container-high": "#e9e7eb",
+                "on-tertiary-fixed": "#291800",
+                "inverse-surface": "#303033",
+                "secondary-fixed": "#fbdbde",
+                "on-tertiary-fixed-variant": "#5d4217",
+                "surface-variant": "#e4e2e5",
+                "on-tertiary-container": "#b08d5b",
+                "on-primary-fixed-variant": "#364768",
+                "primary-fixed-dim": "#b6c6ef",
+                "inverse-primary": "#b6c6ef",
+                "tertiary": "#231400",
+                "on-primary": "#ffffff",
+                "inverse-on-surface": "#f2f0f3",
+                "on-background": "#1b1b1e",
+                "secondary-fixed-dim": "#debfc2",
+                "primary-fixed": "#d8e2ff",
+                "surface-dim": "#dbd9dc",
+                "surface-container": "#efedf0",
+                "on-surface-variant": "#44474e",
+                "surface-bright": "#fbf8fc",
+                "surface-container-low": "#f5f3f6",
+                "surface-tint": "#4e5e81",
+                "primary-container": "#1a2b4b",
+                "secondary": "#70585b",
+                "primary": "#031635",
+                "surface": "#fbf8fc",
+                "on-error": "#ffffff",
+                "tertiary-fixed-dim": "#e8c08a",
+                "on-primary-fixed": "#081b3a"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "unit": "8px",
+                "stack-sm": "12px",
+                "stack-md": "24px",
+                "stack-lg": "48px",
+                "container-max": "1280px",
+                "margin-mobile": "20px",
+                "margin-desktop": "64px",
+                "gutter": "24px"
+        },
+        "fontFamily": {
+                "label-sm": [
+                        "Inter"
+                ],
+                "headline-lg": [
+                        "Playfair Display"
+                ],
+                "display-lg": [
+                        "Playfair Display"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "headline-lg-mobile": [
+                        "Playfair Display"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Playfair Display"
+                ],
+                "body-md": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "64px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-md": [
+                        "28px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .glass-panel {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .btn-hover-lift {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(3, 22, 53, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Global Background Shader -->
+<!-- TopNavBar -->
+<nav class="bg-surface/80 dark:bg-primary/80 backdrop-blur-xl font-headline-md text-headline-md fixed top-0 w-full z-50 shadow-sm border-b border-primary/10 dark:border-primary-fixed-dim/10 flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-4 left-0 right-0">
+<div class="flex items-center gap-8"><button class="scale-95 active:scale-90 transition-transform hover:opacity-80 duration-300 text-primary dark:text-primary-fixed-dim" onclick="document.getElementById('side-panel').classList.remove('translate-x-full')">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<a class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold tracking-tight text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity duration-300" href="#">Flow Wear</a>
+<div class="hidden md:flex gap-6 mt-1"><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors font-label-md text-label-md" href="#">Collections</a></div>
+</div>
+<div class="flex items-center gap-4 text-primary dark:text-primary-fixed-dim">
+<button class="scale-95 active:scale-90 transition-transform hover:opacity-80 duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+</button>
+<button class="scale-95 active:scale-90 transition-transform hover:opacity-80 duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+</button>
+</div>
+</nav>
+<!-- Main Content Split Layout -->
+<main class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-32 pb-stack-lg min-h-screen grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Imagery & 3D Interactive (Sticky) -->
+<div class="col-span-1 lg:col-span-7 flex flex-col gap-unit relative">
+<div class="sticky top-32 flex flex-col gap-stack-md">
+<!-- Main Product Image -->
+<div class="w-full aspect-[4/5] md:aspect-square bg-surface-container-lowest rounded-xl overflow-hidden relative shadow-[0px_10px_30px_rgba(26,43,75,0.05)] border border-primary/5">
+<img alt="Product Image" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLs3xEhU-u0SMPswO1gf5q58zpSyXoM3-l9_kpFR_HPZOAuaNCzFkTv7EzAaFIdXAG8eDJXROSAePr9i83IZ9YD_SrwHTgFZ-F0KOsxSoMqoesk-ylY6nU5VuJlpjLkuAI6GGgta4AEHWPyVAoPM4qN2qT5YMADzdsYR-HUNKdpEVaM4Z1waO7OBdQCkg0zwcuXviosj7jMSyVenZerObJHi9UX95y-D92jzZUJoyhaunhJ3tHeWCvMTynA"/>
+<!-- Chip -->
+<div class="absolute top-6 left-6 bg-secondary-fixed text-primary font-label-sm text-label-sm px-4 py-1 rounded-full uppercase tracking-widest shadow-sm">
+                        Spatial Edition
+                    </div>
+</div>
+<!-- 3D Integration Block -->
+<div class="w-full h-64 md:h-80 bg-surface-container-low rounded-xl overflow-hidden relative shadow-[0px_10px_30px_rgba(26,43,75,0.05)] border border-primary/5 group">
+<div class="absolute inset-0 z-10 pointer-events-none p-6 flex flex-col justify-between">
+<span class="font-label-md text-label-md text-primary opacity-50 uppercase tracking-widest">Interactive Material</span>
+<span class="material-symbols-outlined text-primary self-end opacity-50 group-hover:opacity-100 transition-opacity">360</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Glassmorphic Content Panel -->
+<div class="col-span-1 lg:col-span-5 relative z-10 mt-stack-md lg:mt-0">
+<div class="bg-surface/70 glass-panel border border-primary/10 rounded-xl p-6 md:p-8 shadow-[0px_10px_30px_rgba(26,43,75,0.05)] sticky top-32 flex flex-col gap-stack-md">
+<!-- Header Info -->
+<div class="flex flex-col gap-2">
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Studio</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Aurum &amp; Onda</span>
+</nav>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-primary mt-2">Aurum &amp; Onda</h1>
+<p class="font-headline-md text-headline-md text-on-surface-variant">$1,250</p>
+</div>
+<!-- Description -->
+<div class="font-body-lg text-body-lg text-on-surface-variant flex flex-col gap-4">
+<p class="">A masterclass in spatial form and material science. Merging aerospace-grade alloys with ultra-soft, responsive smart-fabrics for a seamless adaptive experience.</p>
+</div>
+<!-- Color Selection (Minimal) -->
+<div class="flex flex-col gap-3">
+<span class="font-label-md text-label-md text-primary">Colorway: Soft Blush &amp; Deep Blue</span>
+<div class="flex gap-4">
+<button aria-label="Soft Blush" class="w-10 h-10 rounded-full border-2 border-primary bg-secondary-fixed shadow-inner"></button>
+<button aria-label="Obsidian" class="w-10 h-10 rounded-full border border-outline-variant bg-inverse-surface shadow-inner hover:border-primary transition-colors"></button>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-4 pt-4 border-t border-primary/10">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-lg btn-hover-lift uppercase tracking-widest flex items-center justify-center gap-2">
+                        Add to Bag
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</button>
+<button class="w-full bg-secondary-fixed-dim text-primary font-label-md text-label-md py-4 rounded-lg btn-hover-lift uppercase tracking-widest">
+                        Book Studio Viewing
+                    </button>
+</div>
+<!-- Spatial Specs (Bento Grid) -->
+<div class="flex flex-col gap-4 pt-6 border-t border-primary/10">
+<h3 class="font-headline-md text-[20px] text-primary">Spatial Specs</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-primary/5 flex flex-col gap-1">
+<span class="material-symbols-outlined text-primary text-xl">architecture</span>
+<span class="font-label-md text-primary">Architecture</span>
+<span class="font-body-md text-sm text-on-surface-variant">Tensioned Titanium</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-primary/5 flex flex-col gap-1">
+<span class="material-symbols-outlined text-primary text-xl">texture</span>
+<span class="font-label-md text-primary">Textile</span>
+<span class="font-body-md text-sm text-on-surface-variant">Adaptive Micro-Suede</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-primary font-body-md text-body-md w-full py-stack-lg border-t border-secondary-fixed-dim/30 dark:border-on-secondary-fixed-variant/30 flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop gap-stack-md mt-stack-lg relative z-10">
+<div class="font-headline-md text-[24px] md:text-headline-md font-semibold text-primary dark:text-primary-fixed-dim">
+            Flow Wear
+        </div>
+<div class="flex flex-wrap justify-center md:justify-end gap-6 font-label-sm text-label-sm">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors" href="#">Sustainability</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors" href="#">Shipping</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors" href="#">Returns</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors" href="#">Privacy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-secondary dark:hover:text-secondary-fixed-dim transition-colors" href="#">Contact</a>
+</div>
+<div class="text-on-surface-variant dark:text-surface-variant font-label-sm text-[10px] md:text-label-sm w-full md:w-auto text-center mt-4 md:mt-0">
+            © 2024 Flow Wear Studio. All rights reserved.
+        </div>
+</footer>
+<div class="fixed inset-0 z-[100] translate-x-full transition-transform duration-500 ease-in-out" id="side-panel">
+<div class="absolute inset-0 bg-primary/20 backdrop-blur-sm" onclick="document.getElementById('side-panel').classList.add('translate-x-full')"></div>
+<div class="absolute right-0 top-0 h-full w-80 bg-surface-container-lowest shadow-2xl border-l border-primary/10 flex flex-col">
+<div class="p-6 border-b border-primary/5 flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-primary">Categories</span>
+<button class="text-primary hover:opacity-50 transition-opacity" onclick="document.getElementById('side-panel').classList.add('translate-x-full')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<nav class="flex-1 p-6 flex flex-col gap-4">
+<a class="group flex items-center justify-between p-4 rounded-xl hover:bg-secondary-fixed transition-colors" href="#">
+<span class="font-label-md text-label-md text-primary">Jackets</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</a>
+<a class="group flex items-center justify-between p-4 rounded-xl hover:bg-secondary-fixed transition-colors" href="#">
+<span class="font-label-md text-label-md text-primary">Trousers</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</a>
+<a class="group flex items-center justify-between p-4 rounded-xl hover:bg-secondary-fixed transition-colors" href="#">
+<span class="font-label-md text-label-md text-primary">Casual Shirts</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</a>
+<a class="group flex items-center justify-between p-4 rounded-xl hover:bg-secondary-fixed transition-colors" href="#">
+<span class="font-label-md text-label-md text-primary">Shirts</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</a>
+<a class="group flex items-center justify-between p-4 rounded-xl hover:bg-secondary-fixed transition-colors" href="#">
+<span class="font-label-md text-label-md text-primary">Jeans</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</a>
+</nav>
+</div>
+</div>
+</body></html>

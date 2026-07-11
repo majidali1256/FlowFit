@@ -1,0 +1,19 @@
+<section class="max-w-4xl mx-auto px-6 py-16">
+  <div class="text-center mb-12">
+    <h1 class="font-headline-md text-4xl md:text-6xl font-bold text-[#031635] tracking-tight mb-4">
+      {{ page.title }}
+    </h1>
+    <div class="w-16 h-0.5 bg-[#031635]/20 mx-auto"></div>
+  </div>
+
+  <div class="prose prose-lg max-w-none text-[#44474e] leading-relaxed">
+    {{ page.content }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page Content",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,60 @@
+<section class="min-h-[70vh] flex items-center justify-center relative overflow-hidden py-24 px-6">
+  <!-- Subtle background glow -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#031635]/5 to-transparent pointer-events-none"></div>
+
+  <div class="max-w-2xl mx-auto text-center relative z-10">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#031635]/5 border border-[#031635]/15 text-[#031635] text-xs font-semibold tracking-widest uppercase mb-6">
+      <span class="w-2 h-2 rounded-full bg-[#031635] animate-pulse"></span>
+      {{ section.settings.badge_text | default: 'Error 404 — Spatial Disconnect' }}
+    </div>
+
+    <h1 class="font-headline-md text-6xl md:text-8xl font-bold tracking-tight text-[#031635] mb-6">
+      {{ section.settings.title | default: 'Artifact Not Found' }}
+    </h1>
+
+    <p class="text-base md:text-lg text-[#44474e] leading-relaxed max-w-xl mx-auto mb-10">
+      {{ section.settings.subtext | default: 'The spatial coordinates or curated piece you are looking for has shifted out of collection view or no longer exists within our archive.' }}
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="{{ routes.root_url }}" class="w-full sm:w-auto bg-[#031635] text-white px-8 py-4 rounded-xl font-medium text-sm tracking-widest uppercase btn-hover-lift shadow-lg">
+        {{ section.settings.button_text | default: 'Return to Digital Flagship' }}
+      </a>
+      <a href="{{ routes.collections_url }}" class="w-full sm:w-auto bg-white border border-[#031635]/20 text-[#031635] px-8 py-4 rounded-xl font-medium text-sm tracking-widest uppercase hover:bg-[#031635]/5 transition-colors">
+        Explore Collections
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Error 404 — Spatial Disconnect"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Artifact Not Found"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Description",
+      "default": "The spatial coordinates or curated piece you are looking for has shifted out of collection view or no longer exists within our archive."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Label",
+      "default": "Return to Digital Flagship"
+    }
+  ]
+}
+{% endschema %}

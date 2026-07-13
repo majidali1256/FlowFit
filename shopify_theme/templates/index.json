@@ -14,10 +14,15 @@
         "subheading": "Featured Artifact",
         "heading": "Spatial Artifacts"
       }
+    },
+    "collection_grid": {
+      "type": "main-collection-grid",
+      "settings": {}
     }
   },
   "order": [
     "hero",
-    "featured_artifact"
+    "featured_artifact",
+    "collection_grid"
   ]
 }

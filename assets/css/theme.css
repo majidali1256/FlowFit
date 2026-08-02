@@ -1,63 +1,43 @@
 /* ==========================================================================
-   FLOW WEAR - QUIET LUXURY MINIMALIST DESIGN SYSTEM
-   Stitch Design Token Architecture & Glassmorphism Utilities
+   FLOW WEAR - CLEAN ESSENTIAL APPAREL DESIGN SYSTEM
+   Soft Glassmorphism, Clean Borders, & Bulletproof Modal/Drawer Animations
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 :root {
-  /* Brand Color Tokens */
-  --color-primary: #031635;
-  --color-primary-container: #1a2b4b;
-  --color-primary-fixed: #d8e2ff;
-  --color-primary-fixed-dim: #b6c6ef;
+  --color-primary: #0f172a;
+  --color-primary-light: #1e293b;
   --color-on-primary: #ffffff;
   
-  --color-secondary: #70585b;
-  --color-secondary-container: #f8d8db;
-  --color-secondary-fixed: #fbdbde;
-  --color-secondary-fixed-dim: #debfc2;
-  --color-on-secondary: #ffffff;
+  --color-secondary: #64748b;
+  --color-secondary-light: #f1f5f9;
   
-  --color-tertiary: #231400;
-  --color-tertiary-container: #3e2700;
-  --color-tertiary-fixed: #ffddb1;
-  --color-tertiary-fixed-dim: #e8c08a;
+  --color-background: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-low: #f8fafc;
+  --color-on-surface: #0f172a;
+  --color-on-surface-muted: #64748b;
   
-  --color-background: #fbf8fc;
-  --color-on-background: #1b1b1e;
-  --color-surface: #fbf8fc;
-  --color-surface-dim: #dbd9dc;
-  --color-surface-bright: #fbf8fc;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f5f3f6;
-  --color-surface-container: #efedf0;
-  --color-surface-container-high: #e9e7eb;
-  --color-surface-container-highest: #e4e2e5;
-  --color-on-surface: #1b1b1e;
-  --color-on-surface-variant: #44474e;
+  --color-border-subtle: rgba(148, 163, 184, 0.18);
+  --color-border-medium: rgba(148, 163, 184, 0.35);
   
-  --color-outline: #75777f;
-  --color-outline-variant: #c5c6cf;
-  
-  /* Accent Luxury Colors */
-  --color-soft-pink: #FADADD;
-  --color-deep-blue: #1A2B4B;
-  
-  /* Typography */
   --font-headline: 'Playfair Display', serif;
   --font-body: 'Inter', sans-serif;
 }
 
-/* Base Styles */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   background-color: var(--color-background);
   color: var(--color-on-surface);
   font-family: var(--font-body);
@@ -65,81 +45,161 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Glassmorphism Components */
+/* Glassmorphism & Soft Panel Styling */
 .glass-panel {
-  background: rgba(251, 248, 252, 0.72);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(3, 22, 53, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
 }
 
 .glass-panel-dark {
-  background: rgba(3, 22, 53, 0.85);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
 .soft-shadow {
-  box-shadow: 0px 10px 30px rgba(26, 43, 75, 0.06);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
 }
 
 .hover-lift {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 20px 45px rgba(26, 43, 75, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  border-color: var(--color-border-medium);
 }
 
 .btn-hover-lift {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .btn-hover-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(3, 22, 53, 0.15);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
 }
 
-/* Scroll Reveal */
+.btn-hover-lift:active {
+  transform: translateY(0);
+}
+
+/* Size Selection Pills */
+.size-pill {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.size-pill:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.size-pill.active {
+  background-color: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+/* Reveal Elements */
 .reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-surface-container-low);
+  background: var(--color-surface-low);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-outline-variant);
+  background: #cbd5e1;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-outline);
+  background: #94a3b8;
 }
 
-/* Material Symbol adjustments */
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   vertical-align: middle;
+  user-select: none;
 }
 
-/* Toast notification */
 #cart-toast {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+/* ==========================================================================
+   BULLETPROOF MODAL & DRAWER SYSTEM
+   ========================================================================== */
+.modal-overlay {
+  visibility: hidden;
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.active {
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.drawer-panel {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* Left Side Menu Drawer */
+#side-drawer .drawer-panel {
+  transform: translateX(-100%);
+}
+
+#side-drawer.active .drawer-panel {
+  transform: translateX(0) !important;
+}
+
+/* Right Side Drawers (Cart & Account) */
+#cart-drawer .drawer-panel,
+#account-drawer .drawer-panel {
+  transform: translateX(100%);
+}
+
+#cart-drawer.active .drawer-panel,
+#account-drawer.active .drawer-panel {
+  transform: translateX(0) !important;
+}
+
+/* Admin Mode Toggles */
+.add-product-toggle-btn {
+  display: none !important;
+}
+
+body.admin-mode .add-product-toggle-btn {
+  display: flex !important;
 }

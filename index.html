@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flow Wear — Quiet Luxury Digital Flagship</title>
+  <title>Flow Wear — Clothing Brand for Everyone (Men, Women, Kids)</title>
+  <meta name="description" content="Everyday luxury apparel for all. Shop premium shirts, pants, trousers, jackets, caps, and outerwear for Men, Women, Boys, and Girls." />
   
   <!-- Fonts & Material Symbols -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,300 +14,458 @@
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: '#031635',
-            'primary-container': '#1a2b4b',
-            'primary-fixed': '#d8e2ff',
-            'primary-fixed-dim': '#b6c6ef',
-            secondary: '#70585b',
-            'secondary-fixed': '#fbdbde',
-            'secondary-fixed-dim': '#debfc2',
-            background: '#fbf8fc',
-            surface: '#fbf8fc',
-            'surface-container-lowest': '#ffffff',
-            'surface-container-low': '#f5f3f6',
-            'surface-container': '#efedf0',
-            'on-surface': '#1b1b1e',
-            'on-surface-variant': '#44474e',
-            outline: '#75777f',
-            'outline-variant': '#c5c6cf'
-          },
-          fontFamily: {
-            'headline-md': ['Playfair Display', 'serif'],
-            'body-md': ['Inter', 'sans-serif'],
-            'display-lg': ['Playfair Display', 'serif']
-          }
-        }
-      }
-    };
-  </script>
 
   <!-- Flow Wear Theme CSS -->
-  <link rel="stylesheet" href="assets/css/theme.css" />
-
-  <!-- Three.js Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="assets/css/theme.css?v=2" />
 </head>
-<body class="bg-background text-on-surface antialiased relative min-h-screen">
+<body class="bg-slate-50 text-slate-900 antialiased relative min-h-screen">
 
-  <!-- Global WebGL Background Liquid Shader -->
-  <canvas id="global-shader-canvas" class="fixed inset-0 z-[-1] pointer-events-none opacity-45"></canvas>
+  <!-- Global WebGL Ambient Background Shader -->
+  <canvas id="global-shader-canvas" class="fixed inset-0 z-[-1] pointer-events-none opacity-40"></canvas>
 
   <!-- Top Glass Navigation Bar -->
-  <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-primary/10 shadow-sm transition-all duration-300">
+  <nav class="fixed top-0 w-full z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/80 shadow-sm transition-all duration-300">
     <div class="flex justify-between items-center max-w-[1280px] mx-auto px-6 md:px-16 py-4">
       <div class="flex items-center">
-        <button id="drawer-toggle" class="text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90 mr-4" aria-label="Open Menu">
+        <button id="drawer-toggle" class="drawer-toggle-btn text-slate-900 hover:text-slate-600 transition-colors mr-4 cursor-pointer" aria-label="Open Menu">
           <span class="material-symbols-outlined">menu</span>
         </button>
-        <a href="index.html" class="font-headline-md text-2xl md:text-3xl font-bold tracking-tight text-primary">Flow Wear</a>
+        <a href="index.html" class="font-headline-md text-2xl md:text-3xl font-bold tracking-tight text-slate-900">Flow Wear</a>
       </div>
 
-      <div class="hidden md:flex space-x-8">
-        <a href="index.html" class="text-sm font-semibold tracking-wider text-primary border-b-2 border-primary pb-1">Home</a>
-        <a href="collections.html" class="text-sm font-semibold tracking-wider text-on-surface-variant hover:text-primary transition-colors">Collections</a>
+      <div class="hidden md:flex space-x-8 items-center">
+        <a href="index.html" class="text-sm font-semibold tracking-wider text-slate-900 border-b-2 border-slate-900 pb-1">Home</a>
+        <a href="collections.html" class="text-sm font-semibold tracking-wider text-slate-600 hover:text-slate-900 transition-colors">Collections</a>
+        <a href="new-arrivals.html" class="text-sm font-semibold tracking-wider text-slate-600 hover:text-slate-900 transition-colors">New Arrivals</a>
+        <button class="add-product-toggle-btn bg-slate-100 text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full hover:bg-slate-900 hover:text-white transition-all flex items-center gap-1 cursor-pointer border border-slate-200">
+          <span class="material-symbols-outlined text-sm">add_circle</span>
+          + Add Product
+        </button>
       </div>
 
       <div class="flex space-x-4 items-center">
-        <button class="cart-toggle-btn relative text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90" aria-label="Shopping Bag">
-          <span class="material-symbols-outlined">shopping_bag</span>
-          <span class="cart-count-badge absolute -top-1.5 -right-1.5 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">1</span>
+        <button class="search-toggle-btn text-slate-900 hover:text-slate-600 transition-colors cursor-pointer" aria-label="Search">
+          <span class="material-symbols-outlined">search</span>
         </button>
-        <button class="text-primary hover:opacity-80 transition-opacity duration-300 scale-95 active:scale-90" aria-label="Account">
+        <button class="cart-toggle-btn relative text-slate-900 hover:text-slate-600 transition-colors cursor-pointer" aria-label="Shopping Bag">
+          <span class="material-symbols-outlined">checkroom</span>
+          <span class="cart-count-badge absolute -top-1.5 -right-1.5 bg-slate-900 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">1</span>
+        </button>
+        <button class="account-toggle-btn text-slate-900 hover:text-slate-600 transition-colors cursor-pointer" aria-label="Account">
           <span class="material-symbols-outlined">person</span>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- Main Hero Section with Three.js Spatial Artifact -->
+  <!-- Hero Section -->
   <main class="pt-24 pb-20">
-    <section class="min-h-[85vh] flex items-center justify-center px-6 md:px-16">
+    <section class="min-h-[75vh] flex items-center justify-center px-6 md:px-16 py-12">
       <div class="max-w-[1280px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-6 z-10 reveal text-center lg:text-left space-y-6 order-2 lg:order-1">
-          <span class="bg-secondary-fixed text-primary px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest inline-block">Spatial Collection 04</span>
-          <h1 class="font-headline-md text-5xl md:text-7xl text-primary font-bold leading-tight">
-            The Future <br class="hidden lg:block"/>of Form
+        <div class="lg:col-span-6 z-10 reveal text-center lg:text-left space-y-6">
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+            <span class="bg-slate-100 text-slate-800 border border-slate-200 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest inline-block">Clothing Brand For Everyone</span>
+            <button class="add-product-toggle-btn bg-slate-900 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-slate-800 cursor-pointer inline-flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">add</span> Add New Item
+            </button>
+          </div>
+          <h1 class="font-headline-md text-5xl md:text-7xl text-slate-900 font-bold leading-tight">
+            Apparel for All. <br/>Men, Women &amp; Kids.
           </h1>
-          <p class="text-lg text-on-surface-variant max-w-lg mx-auto lg:mx-0 leading-relaxed">
-            Architectural precision meets fluid movement. Experience responsive memory polymers and sculptural tailoring designed for modern luxury.
+          <p class="text-lg text-slate-600 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            Essential clothing crafted from organic cotton, heavyweight fleece, and precision tailoring. Explore shirts, trousers, jackets, caps, and outerwear.
           </p>
           <div class="pt-4 flex flex-wrap gap-4 justify-center lg:justify-start">
-            <a href="collections.html" class="bg-primary text-on-primary text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-lg btn-hover-lift shadow-md inline-flex items-center gap-2">
-              Explore Collection
+            <a href="collections.html" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-lg btn-hover-lift shadow-md inline-flex items-center gap-2">
+              Shop All Clothing
               <span class="material-symbols-outlined text-sm">arrow_forward</span>
             </a>
-            <a href="studio.html" class="bg-surface-container-lowest border border-primary/20 text-primary text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-lg btn-hover-lift">
-              Interactive 3D Studio
-            </a>
+            <button class="add-product-toggle-btn bg-white border border-slate-200 text-slate-900 text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-lg btn-hover-lift inline-flex items-center gap-2 cursor-pointer">
+              <span class="material-symbols-outlined text-base">add_box</span>
+              Add Your Product
+            </button>
           </div>
         </div>
 
-        <div class="lg:col-span-6 relative h-[420px] lg:h-[560px] w-full reveal order-1 lg:order-2">
-          <div class="absolute inset-0 glass-panel rounded-3xl overflow-hidden soft-shadow relative flex flex-col justify-between p-6">
-            <div class="flex justify-between items-center z-10">
-              <span class="font-mono text-xs text-primary/60 tracking-widest uppercase">3D SPATIAL ARTIFACT VIEW</span>
-              <span class="material-symbols-outlined text-primary/60">360</span>
-            </div>
-
-            <!-- Three.js Interactive Hero Container -->
-            <div id="threejs-hero-container" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"></div>
-
-            <div class="z-10 bg-surface/80 backdrop-blur-md rounded-xl p-4 border border-primary/10 max-w-xs">
-              <p class="text-xs font-semibold text-primary uppercase tracking-wider">Touch &amp; Drag to Rotate</p>
-              <p class="text-xs text-on-surface-variant mt-0.5">Sculptural Memory Alloy · #FADADD Soft Pink</p>
+        <div class="lg:col-span-6 relative h-[420px] lg:h-[500px] w-full reveal">
+          <div class="absolute inset-0 glass-panel rounded-3xl overflow-hidden soft-shadow p-6 flex flex-col justify-between group">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJXctBq6dGKXdU_xb_MyTNETARrPJQH2oh_wRRJP3DTeNr3wxHOTplkB1eje3uue0zd1tG9jjggeefz6BDRs0kOQR2kdYsIg93SgBRor6738jygyI0VtcDiI6LdrJPRw6mBkuPvA91wLrUazCZCvevN0N3pGXZJLBpdiRyqcg4NbqqiH68b6379JrLZcMjFbc050L2nPRPm2KMnzJNKCqxfrSR_oBAdkp7a3vbFYYGmPJzHWf9CoL3Xw" alt="Apparel Collection" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-md rounded-2xl p-4 border border-slate-200 max-w-xs shadow-sm">
+              <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 block">Live Storefront</span>
+              <p class="text-xs font-semibold text-slate-900">Insulated Puffers, Shirts &amp; Custom Apparel</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Featured Spatial Masterpiece Section (Aurum & Onda) -->
-    <section class="py-20 px-6 md:px-16 bg-surface-container-low/60 border-y border-primary/5">
+    <!-- Apparel Categories -->
+    <section class="py-16 px-6 md:px-16 bg-white border-y border-slate-200/80">
       <div class="max-w-[1280px] mx-auto">
         <div class="text-center mb-12 reveal">
-          <span class="text-xs font-semibold tracking-widest uppercase text-secondary block mb-2">Featured Artifact</span>
-          <h2 class="font-headline-md text-3xl md:text-4xl font-bold text-primary">Spatial Artifacts</h2>
+          <span class="text-xs font-semibold tracking-widest uppercase text-slate-500 block mb-2">Wardrobe Essentials</span>
+          <h2 class="font-headline-md text-3xl md:text-4xl font-bold text-slate-900">Shop By Category</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div class="md:col-span-7 reveal">
-            <div class="glass-panel p-8 md:p-12 rounded-3xl soft-shadow relative overflow-hidden group">
-              <div class="absolute top-6 right-6 z-10">
-                <span class="bg-secondary-fixed text-primary px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider">Limited Edition</span>
-              </div>
-              <img src="https://lh3.googleusercontent.com/aida/AP1WRLvKZ5LDIRYOddqxqKBSi5T3dK2VVK8SFnBB6R4rmAsZeXAvfdw5Znd8cEJQpu_Nf8CI23V6qUNkIQGwQ0r5bTfI_6ZhmpxHF4L1kbDpwVKZZ0XXS8JrDAaO6f86ZHojw-p3UvYiIJg2cu8-15YEsf_WJgyGyXqQshPe5ysOpuef_WUuY9uWdgFk6prsI8wXbdhwG1P-1oJU9mC4UPq6-I7sU4bJ5MP78g6yrihWMVzPjt41Jt3sadD21wU" alt="Aurum Wave Bag" class="w-full h-[360px] object-contain mix-blend-multiply transform group-hover:scale-105 transition-transform duration-700 ease-out" />
-            </div>
-          </div>
-
-          <div class="md:col-span-5 reveal space-y-6 md:pl-6">
-            <div class="space-y-2">
-              <span class="text-xs text-on-surface-variant uppercase tracking-widest">Masterpiece Collection</span>
-              <h3 class="font-headline-md text-3xl md:text-4xl font-bold text-primary">The Aurum Wave Bag</h3>
-              <p class="text-2xl font-semibold text-primary">$1,250</p>
-            </div>
-            <p class="text-on-surface-variant leading-relaxed">
-              A study in contradiction. Merging architectural precision with fluid movement, the Aurum Wave Bag is crafted from memory-tensioned titanium and adaptive micro-suede.
-            </p>
-            <div class="pt-4 flex flex-col sm:flex-row gap-4">
-              <button class="add-to-bag-btn bg-primary text-on-primary text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-lg btn-hover-lift flex-1"
-                data-id="aurum-onda-01"
-                data-name="The Aurum Wave Bag"
-                data-price="1250"
-                data-image="https://lh3.googleusercontent.com/aida/AP1WRLvKZ5LDIRYOddqxqKBSi5T3dK2VVK8SFnBB6R4rmAsZeXAvfdw5Znd8cEJQpu_Nf8CI23V6qUNkIQGwQ0r5bTfI_6ZhmpxHF4L1kbDpwVKZZ0XXS8JrDAaO6f86ZHojw-p3UvYiIJg2cu8-15YEsf_WJgyGyXqQshPe5ysOpuef_WUuY9uWdgFk6prsI8wXbdhwG1P-1oJU9mC4UPq6-I7sU4bJ5MP78g6yrihWMVzPjt41Jt3sadD21wU"
-                data-color="Soft Blush & Deep Blue">
-                Add to Bag — $1,250
-              </button>
-              <a href="product.html" class="bg-secondary-fixed text-primary text-sm font-semibold tracking-wider uppercase px-6 py-4 rounded-lg btn-hover-lift text-center">
-                View Details
-              </a>
-            </div>
-          </div>
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-6">
+          <a href="collections.html" class="glass-panel p-6 rounded-2xl text-center hover-lift group border border-slate-200/80 flex flex-col items-center">
+            <span class="material-symbols-outlined text-4xl text-slate-900 mb-3 group-hover:scale-110 transition-transform">dry_cleaning</span>
+            <h3 class="font-headline-md text-lg font-bold text-slate-900">Shirts</h3>
+            <p class="text-xs text-slate-500 mt-1">Tees &amp; Tops</p>
+          </a>
+          <a href="collections.html" class="glass-panel p-6 rounded-2xl text-center hover-lift group border border-slate-200/80 flex flex-col items-center">
+            <span class="material-symbols-outlined text-4xl text-slate-900 mb-3 group-hover:scale-110 transition-transform">strikethrough_s</span>
+            <h3 class="font-headline-md text-lg font-bold text-slate-900">Pants</h3>
+            <p class="text-xs text-slate-500 mt-1">Denim &amp; Cargos</p>
+          </a>
+          <a href="collections.html" class="glass-panel p-6 rounded-2xl text-center hover-lift group border border-slate-200/80 flex flex-col items-center">
+            <span class="material-symbols-outlined text-4xl text-slate-900 mb-3 group-hover:scale-110 transition-transform">straighten</span>
+            <h3 class="font-headline-md text-lg font-bold text-slate-900">Trousers</h3>
+            <p class="text-xs text-slate-500 mt-1">Pleated &amp; Chinos</p>
+          </a>
+          <a href="collections.html" class="glass-panel p-6 rounded-2xl text-center hover-lift group border border-slate-200/80 flex flex-col items-center">
+            <span class="material-symbols-outlined text-4xl text-slate-900 mb-3 group-hover:scale-110 transition-transform">steps</span>
+            <h3 class="font-headline-md text-lg font-bold text-slate-900">Jackets</h3>
+            <p class="text-xs text-slate-500 mt-1">Coats &amp; Outerwear</p>
+          </a>
+          <a href="collections.html" class="glass-panel p-6 rounded-2xl text-center hover-lift group border border-slate-200/80 flex flex-col items-center">
+            <span class="material-symbols-outlined text-4xl text-slate-900 mb-3 group-hover:scale-110 transition-transform">style</span>
+            <h3 class="font-headline-md text-lg font-bold text-slate-900">Caps</h3>
+            <p class="text-xs text-slate-500 mt-1">Hats &amp; Accessories</p>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Editorial Lookbook Teaser Grid -->
-    <section class="py-20 px-6 md:px-16">
-      <div class="max-w-[1280px] mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
-          <div>
-            <span class="text-xs font-semibold tracking-widest uppercase text-secondary block mb-2">Editorial Series</span>
-            <h2 class="font-headline-md text-3xl md:text-4xl font-bold text-primary">Spatial Form Studies</h2>
-          </div>
-          <a href="lookbook.html" class="text-sm font-semibold text-primary hover:text-secondary transition-colors inline-flex items-center gap-1 mt-4 md:mt-0">
-            View Lookbook <span class="material-symbols-outlined text-sm">arrow_forward</span>
+    <!-- Featured Apparel Products (Dynamic Grid) -->
+    <section class="py-20 px-6 md:px-16 max-w-[1280px] mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 reveal">
+        <div>
+          <span class="text-xs font-semibold tracking-widest uppercase text-slate-500 block mb-2">Men, Women &amp; Kids</span>
+          <h2 class="font-headline-md text-3xl md:text-4xl font-bold text-slate-900">Featured Apparel</h2>
+        </div>
+        <div class="mt-4 md:mt-0 flex gap-4 items-center">
+          <button class="add-product-toggle-btn bg-slate-100 text-slate-900 text-xs font-bold px-4 py-2 rounded-lg uppercase tracking-wider hover:bg-slate-900 hover:text-white transition-all flex items-center gap-1 border border-slate-200 cursor-pointer">
+            <span class="material-symbols-outlined text-sm">add_circle</span>
+            + Add Product
+          </button>
+          <a href="collections.html" class="text-xs font-semibold uppercase tracking-wider text-slate-900 hover:text-slate-600 flex items-center gap-1">
+            View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
           </a>
         </div>
+      </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <a href="product.html" class="glass-panel rounded-2xl overflow-hidden hover-lift group reveal block">
-            <div class="aspect-square bg-surface-container-lowest overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLZ8EVYSQYQcR4v0O8JvDvCSOmv2M99X31uSDDKCMAD4n75XzXRf7CSQrDz81GZWG-9KvvQzXUZOPcRJjz3qT3m0PLunGkoGUwk7OigEV-bQqrI0k-ZE2p2vf67lHwxQQAMeHNKoALWRZroKV-yIYzJBEXbDcQC07You2gS0DChAhng3CCee12-FUHBRc9671cTlOswd_tsz5SflQE6L4R0HlZeIH7VsT-o5srd5QDAYZA8mCwGtFwgQ" alt="Cylindrical Cuff" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            </div>
-            <div class="p-6 flex justify-between items-center">
-              <div>
-                <h3 class="font-headline-md text-xl font-semibold text-primary">Cylindrical Cuff</h3>
-                <p class="text-xs text-on-surface-variant mt-1">Spatial Accessory</p>
-              </div>
-              <span class="font-semibold text-primary">$340</span>
-            </div>
-          </a>
+      <div id="featured-products-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+    </section>
 
-          <a href="product.html" class="glass-panel rounded-2xl overflow-hidden hover-lift group reveal block">
-            <div class="aspect-square bg-surface-container-lowest overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZASYxaAz1A_wfPnJHZ-571CUCBI1R34BjhhmhTo_lPJrOQzcqLYpwnLm6Q0YKKSpCZQq1wJnWtGNgyD_w9PHN02DxNNeesOE46M97KLQzgILxRpkMATwVpplvnM4_3q4uXTqLNwniZA-G2i2IHTFdcUtrjQgbqWO1fwxgzMHVNMWYB4cD3jod_0hwNXrvumDwrd9c0MrU_ftSVRma_SG_4t_Q72DS0jEWfhVaLU60lXNeWuxNSxF8MA" alt="Modular Vest" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            </div>
-            <div class="p-6 flex justify-between items-center">
-              <div>
-                <h3 class="font-headline-md text-xl font-semibold text-primary">Modular Vest</h3>
-                <p class="text-xs text-on-surface-variant mt-1">Technical Tailoring</p>
-              </div>
-              <span class="font-semibold text-primary">$580</span>
-            </div>
-          </a>
-
-          <a href="product.html" class="glass-panel rounded-2xl overflow-hidden hover-lift group reveal block">
-            <div class="aspect-square bg-surface-container-lowest overflow-hidden">
-              <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmStkfJekH8fJITo4NRghCPTl7TLXTJWqwvhXs3HGbySxz31nCKsf9BCmYIsjbkm0D500jjRf1snSDrou04nhGBz3Ue-aFGxmpGtwj5QyAGgPbnAiV2N9q2shssp028NK9v6lZ_Z_5f_HHp9I_584WR47tQhW2mWRHZnOkBOcGVA6nfu_jtQAjnhZR3_Is6diCCcfiEIHCT8j845Lv2S9mfuynkkjp2RMEFq3LYvUcXMg2PK6KjaVgrg" alt="Opaque Visor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            </div>
-            <div class="p-6 flex justify-between items-center">
-              <div>
-                <h3 class="font-headline-md text-xl font-semibold text-primary">Opaque Visor</h3>
-                <p class="text-xs text-on-surface-variant mt-1">Spatial Optics</p>
-              </div>
-              <span class="font-semibold text-primary">$410</span>
-            </div>
-          </a>
+    <!-- Brand Values Banner -->
+    <section class="py-16 px-6 md:px-16 bg-white border-y border-slate-200/80">
+      <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+        <div class="space-y-2">
+          <span class="material-symbols-outlined text-3xl text-slate-900">eco</span>
+          <h4 class="font-headline-md text-base font-bold text-slate-900">Organic Cotton</h4>
+          <p class="text-xs text-slate-500">Sourced sustainably for long-lasting comfort.</p>
+        </div>
+        <div class="space-y-2">
+          <span class="material-symbols-outlined text-3xl text-slate-900">group</span>
+          <h4 class="font-headline-md text-base font-bold text-slate-900">Sizing For Everyone</h4>
+          <p class="text-xs text-slate-500">Tailored fits for Men, Women, Boys &amp; Girls.</p>
+        </div>
+        <div class="space-y-2">
+          <span class="material-symbols-outlined text-3xl text-slate-900">local_shipping</span>
+          <h4 class="font-headline-md text-base font-bold text-slate-900">Global Express Delivery</h4>
+          <p class="text-xs text-slate-500">Fast, carbon-neutral shipping direct to your door.</p>
+        </div>
+        <div class="space-y-2">
+          <span class="material-symbols-outlined text-3xl text-slate-900">assignment_return</span>
+          <h4 class="font-headline-md text-base font-bold text-slate-900">Easy 30-Day Returns</h4>
+          <p class="text-xs text-slate-500">Hassle-free exchanges &amp; instant refunds.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="w-full py-12 bg-surface border-t border-primary/10">
-    <div class="max-w-[1280px] mx-auto px-6 md:px-16 flex flex-col md:flex-row justify-between items-center gap-6">
-      <div class="font-headline-md text-2xl font-bold text-primary">Flow Wear</div>
-      <div class="flex flex-wrap justify-center gap-8">
-        <a href="collections.html" class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors">Collections</a>
-        <a href="#" class="text-xs font-semibold uppercase tracking-wider text-on-surface-variant hover:text-primary transition-colors">Privacy</a>
+  <!-- Floating "+ Add Product" Action Button -->
+  <button class="add-product-toggle-btn fixed bottom-6 left-6 z-40 bg-slate-900 hover:bg-slate-800 text-white px-5 py-3 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center gap-2 text-xs font-bold uppercase tracking-wider cursor-pointer">
+    <span class="material-symbols-outlined text-base">add_circle</span>
+    + Add Product
+  </button>
+
+  <!-- Live "+ Add Product" Modal Form -->
+  <div id="add-product-modal" class="modal-overlay items-center justify-center p-4">
+    <div id="add-product-backdrop" class="absolute inset-0 bg-slate-900/50 backdrop-blur-md"></div>
+    <div class="relative w-full max-w-xl glass-panel rounded-3xl p-8 shadow-2xl bg-white border border-slate-200 z-10 space-y-6 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 block">Live Catalog Creator</span>
+          <h3 class="font-headline-md text-2xl font-bold text-slate-900">Add New Product</h3>
+        </div>
+        <button id="add-product-close" class="text-slate-900 hover:text-slate-500 transition-colors cursor-pointer">
+          <span class="material-symbols-outlined">close</span>
+        </button>
       </div>
-      <div class="text-xs text-on-surface-variant">© 2024 Flow Wear Studio. All rights reserved.</div>
+
+      <form id="add-product-form" class="space-y-4">
+        <div>
+          <label class="text-xs font-bold text-slate-900 block mb-1">Product Title *</label>
+          <input id="prod-name" type="text" placeholder="e.g. Graphic Oversized Hoodie" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm outline-none focus:border-slate-900" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-bold text-slate-900 block mb-1">Category *</label>
+            <select id="prod-category" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm outline-none focus:border-slate-900">
+              <option value="shirts">Shirts</option>
+              <option value="pants">Pants</option>
+              <option value="trousers">Trousers</option>
+              <option value="jackets">Jackets</option>
+              <option value="caps">Caps</option>
+              <option value="kids">Boys &amp; Girls</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-900 block mb-1">Target Audience *</label>
+            <select id="prod-gender" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm outline-none focus:border-slate-900">
+              <option value="Men / Women">Men &amp; Women</option>
+              <option value="All / Unisex">All / Unisex</option>
+              <option value="Boys &amp; Girls">Boys &amp; Girls</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-bold text-slate-900 block mb-1">Price ($) *</label>
+            <input id="prod-price" type="number" step="0.01" placeholder="85.00" required class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm outline-none focus:border-slate-900" />
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-900 block mb-1">Colorway</label>
+            <input id="prod-color" type="text" placeholder="e.g. Washed Olive" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm outline-none focus:border-slate-900" />
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-slate-900 block mb-1">Image URL (Optional)</label>
+          <input id="prod-image" type="url" placeholder="https://example.com/photo.jpg (Leave empty for default)" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm outline-none focus:border-slate-900" />
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-slate-900 block mb-1">Description</label>
+          <textarea id="prod-desc" rows="2" placeholder="Brief product description..." class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm outline-none focus:border-slate-900"></textarea>
+        </div>
+
+        <div class="pt-4 flex justify-between items-center border-t border-slate-100 gap-3">
+          <button id="reset-catalog-btn" type="button" class="text-xs font-semibold text-rose-600 hover:underline cursor-pointer">Reset Catalog</button>
+          <button type="submit" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs py-4 px-8 rounded-xl uppercase tracking-widest btn-hover-lift shadow-lg cursor-pointer">
+            Add Product to Catalog
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w-full py-16 bg-white border-t border-slate-200/80 mt-auto">
+    <div class="max-w-[1280px] mx-auto px-6 md:px-16 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <!-- Brand & Newsletter -->
+      <div class="md:col-span-1">
+        <div class="font-headline-md text-3xl font-bold text-slate-900 mb-4">Flow Wear</div>
+        <p class="text-sm text-slate-500 mb-6">Redefining modern essentials for everyone. Premium quality, sustainable materials.</p>
+        <form class="flex flex-col gap-2" onsubmit="event.preventDefault(); alert('Subscribed to newsletter!');">
+          <label class="text-xs font-bold text-slate-900 uppercase tracking-wider">Join The Club</label>
+          <div class="flex">
+            <input type="email" placeholder="Email Address" required class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-l-lg outline-none text-sm focus:border-slate-900" />
+            <button type="submit" class="bg-slate-900 text-white px-4 py-2 rounded-r-lg text-sm font-semibold hover:bg-slate-800 transition-colors">&rarr;</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Shop Links -->
+      <div>
+        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Shop</h4>
+        <ul class="space-y-3">
+          <li><a href="new-arrivals.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">New Arrivals</a></li>
+          <li><a href="collections.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">All Clothing</a></li>
+          <li><a href="collections.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Best Sellers</a></li>
+          <li><a href="collections.html" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Sale</a></li>
+        </ul>
+      </div>
+
+      <!-- Customer Care -->
+      <div>
+        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Customer Care</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Contact Us</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">FAQs</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Shipping &amp; Delivery</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Returns &amp; Exchanges</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Size Guide</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal & Socials -->
+      <div>
+        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Legal</h4>
+        <ul class="space-y-3 mb-6">
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-slate-900 transition-colors">Terms of Service</a></li>
+        </ul>
+        <h4 class="text-xs font-bold text-slate-900 uppercase tracking-wider mb-4">Follow Us</h4>
+        <div class="flex gap-4">
+          <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors" title="Instagram"><span class="material-symbols-outlined">photo_camera</span></a>
+          <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors" title="Twitter"><span class="material-symbols-outlined">chat_bubble</span></a>
+          <a href="#" class="text-slate-400 hover:text-slate-900 transition-colors" title="Facebook"><span class="material-symbols-outlined">public</span></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="max-w-[1280px] mx-auto px-6 md:px-16 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-xs text-slate-500">&copy; 2026 Flow Wear Clothing. All rights reserved.</div>
+      <div class="flex gap-2">
+        <span class="material-symbols-outlined text-slate-300" title="Credit Card">credit_card</span>
+        <span class="material-symbols-outlined text-slate-300" title="PayPal">account_balance_wallet</span>
+        <span class="material-symbols-outlined text-slate-300" title="Apple Pay">phone_iphone</span>
+      </div>
     </div>
   </footer>
 
-  <!-- Slide-Out Navigation Menu Drawer -->
-  <aside id="side-drawer" class="fixed inset-0 z-[100] pointer-events-none opacity-0 transition-opacity duration-300">
-    <div id="drawer-overlay" class="absolute inset-0 bg-primary/25 backdrop-blur-sm"></div>
-    <div id="drawer-content" class="absolute top-0 left-0 h-full w-80 glass-panel shadow-2xl transform -translate-x-full transition-transform duration-500 ease-out flex flex-col p-8 bg-surface">
+  <!-- Navigation Drawer -->
+  <aside id="side-drawer" class="modal-overlay">
+    <div id="drawer-overlay" class="absolute inset-0 bg-slate-900/25 backdrop-blur-sm"></div>
+    <div id="drawer-content" class="drawer-panel absolute top-0 left-0 h-full w-80 glass-panel shadow-2xl flex flex-col p-8 bg-white">
       <div class="flex justify-between items-center mb-8">
-        <span class="font-headline-md text-2xl font-bold text-primary">Menu</span>
-        <button id="drawer-close" class="text-primary hover:text-secondary transition-colors" aria-label="Close menu">
+        <span class="font-headline-md text-2xl font-bold text-slate-900">Menu</span>
+        <button id="drawer-close" class="text-slate-900 hover:text-slate-600 transition-colors cursor-pointer">
           <span class="material-symbols-outlined">close</span>
         </button>
       </div>
       <nav class="flex flex-col gap-6">
-        <a href="index.html" class="text-lg font-semibold text-primary hover:text-secondary transition-colors flex items-center justify-between">
-          <span>Home</span>
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </a>
-        <a href="collections.html" class="text-lg font-semibold text-primary hover:text-secondary transition-colors flex items-center justify-between">
-          <span>All Collections</span>
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </a>
-        <a href="product.html" class="text-lg font-semibold text-primary hover:text-secondary transition-colors flex items-center justify-between">
-          <span>Aurum &amp; Onda Detail</span>
-          <span class="material-symbols-outlined text-sm">arrow_forward</span>
-        </a>
+        <a href="index.html" class="text-lg font-semibold text-slate-900 hover:text-slate-600 transition-colors">Home</a>
+        <a href="collections.html" class="text-lg font-semibold text-slate-900 hover:text-slate-600 transition-colors">All Clothing Collections</a>
+        <button class="add-product-toggle-btn text-left text-lg font-semibold text-slate-700 hover:text-slate-900 transition-colors flex items-center gap-2 cursor-pointer">
+          <span class="material-symbols-outlined">add_circle</span> + Add New Product
+        </button>
+        <a href="new-arrivals.html" class="text-lg font-semibold text-slate-900 hover:text-slate-600 transition-colors">New Arrivals</a>
       </nav>
-      <div class="mt-auto pt-8 border-t border-primary/10 text-xs text-on-surface-variant">
-        <p>Quiet Luxury Architecture</p>
-        <p class="mt-1">Complimentary Worldwide Shipping</p>
-      </div>
     </div>
   </aside>
 
-  <!-- Slide-Out Shopping Bag Drawer -->
-  <aside id="cart-drawer" class="fixed inset-0 z-[110] pointer-events-none opacity-0 transition-opacity duration-300">
-    <div id="cart-overlay" class="absolute inset-0 bg-primary/25 backdrop-blur-sm"></div>
-    <div id="cart-drawer-content" class="absolute top-0 right-0 h-full w-full max-w-md glass-panel shadow-2xl transform translate-x-full transition-transform duration-500 ease-out flex flex-col bg-surface">
-      <div class="p-6 border-b border-primary/10 flex justify-between items-center">
+  <!-- Shopping Bag Drawer -->
+  <aside id="cart-drawer" class="modal-overlay">
+    <div id="cart-overlay" class="absolute inset-0 bg-slate-900/25 backdrop-blur-sm"></div>
+    <div id="cart-drawer-content" class="drawer-panel absolute top-0 right-0 h-full w-full max-w-md glass-panel shadow-2xl flex flex-col bg-white">
+      <div class="p-6 border-b border-slate-100 flex justify-between items-center">
         <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary">shopping_bag</span>
-          <span class="font-headline-md text-xl font-bold text-primary">Shopping Bag</span>
+          <span class="material-symbols-outlined text-slate-900">checkroom</span>
+          <span class="font-headline-md text-xl font-bold text-slate-900">Wardrobe Bag</span>
         </div>
-        <button id="cart-close" class="text-primary hover:opacity-60 transition-opacity" aria-label="Close Bag">
+        <button id="cart-close" class="text-slate-900 hover:text-slate-600 transition-colors cursor-pointer">
           <span class="material-symbols-outlined">close</span>
         </button>
       </div>
-
       <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4"></div>
-
-      <div class="p-6 border-t border-primary/10 bg-surface-container-lowest/80 space-y-4">
+      <div class="p-6 border-t border-slate-100 bg-slate-50 space-y-4">
         <div class="flex justify-between items-center">
-          <span class="text-sm text-on-surface-variant">Subtotal</span>
-          <span id="cart-subtotal-price" class="font-headline-md text-xl font-bold text-primary">$1,250.00</span>
+          <span class="text-sm text-slate-500">Subtotal</span>
+          <span id="cart-subtotal-price" class="font-headline-md text-xl font-bold text-slate-900">$0.00</span>
         </div>
-        <p class="text-xs text-on-surface-variant">Shipping and complimentary gift packaging calculated at checkout.</p>
-        <button class="w-full bg-primary text-on-primary font-semibold text-sm py-4 rounded-lg btn-hover-lift uppercase tracking-widest">
+        <button class="proceed-checkout-btn w-full bg-slate-900 text-white font-semibold text-sm py-4 rounded-lg btn-hover-lift uppercase tracking-widest cursor-pointer">
           Proceed to Checkout
         </button>
       </div>
     </div>
   </aside>
 
-  <!-- Toast Notification -->
-  <div id="cart-toast" class="fixed bottom-6 right-6 z-[120] bg-primary text-on-primary px-6 py-4 rounded-xl shadow-2xl transform translate-y-24 opacity-0 flex items-center gap-3">
-    <span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+  <!-- Search Overlay Modal -->
+  <div id="search-overlay" class="modal-overlay items-start justify-center pt-20 px-4">
+    <div id="search-backdrop" class="absolute inset-0 bg-slate-900/40 backdrop-blur-md"></div>
+    <div class="relative w-full max-w-2xl glass-panel rounded-3xl p-6 shadow-2xl bg-white border border-slate-200 z-10">
+      <div class="flex items-center gap-3 border-b border-slate-100 pb-4">
+        <span class="material-symbols-outlined text-slate-900 text-2xl">search</span>
+        <input id="search-input" type="text" placeholder="Search shirts, trousers, jackets, caps, kids apparel..." class="w-full bg-transparent border-none outline-none font-body-md text-lg text-slate-900 placeholder-slate-400" />
+        <button id="search-close" class="text-slate-900 hover:text-slate-600 transition-colors cursor-pointer">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div id="search-results" class="mt-4 max-h-96 overflow-y-auto space-y-3"></div>
+    </div>
+  </div>
+
+  <!-- Account Profile Drawer -->
+  <aside id="account-drawer" class="modal-overlay">
+    <div id="account-overlay" class="absolute inset-0 bg-slate-900/25 backdrop-blur-sm"></div>
+    <div id="account-drawer-content" class="drawer-panel absolute top-0 right-0 h-full w-full max-w-md glass-panel shadow-2xl flex flex-col bg-white p-6">
+      <div class="flex justify-between items-center pb-6 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-slate-900">person</span>
+          <span class="font-headline-md text-xl font-bold text-slate-900">Customer Portal</span>
+        </div>
+        <button id="account-close" class="text-slate-900 hover:text-slate-600 transition-colors cursor-pointer">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto py-6 space-y-6">
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-3">
+          <span class="bg-slate-200 text-slate-900 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Sign In</span>
+          <h3 class="font-headline-md text-lg font-bold text-slate-900">Flow Wear Club</h3>
+          <p class="text-xs text-slate-500">Sign in to track orders, save sizing preferences, and get early drop notifications.</p>
+        </div>
+        <form id="account-login-form" class="space-y-4">
+          <p class="text-xs text-slate-500 pb-2">Prototype Mode: Instantly unlock product management controls.</p>
+          <button type="submit" class="w-full bg-slate-900 text-white font-semibold text-xs py-4 rounded-lg uppercase tracking-widest btn-hover-lift cursor-pointer flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-sm">lock_open</span> Enable Owner Mode
+          </button>
+        </form>
+        <div id="admin-logged-in-view" style="display: none;" class="text-center space-y-4">
+          <span class="material-symbols-outlined text-4xl text-emerald-500">verified_user</span>
+          <h3 class="font-headline-md text-xl font-bold text-slate-900">Owner Logged In</h3>
+          <p class="text-sm text-slate-500">You have access to add products.</p>
+          <button id="admin-logout-btn" class="w-full bg-rose-600 text-white font-semibold text-xs py-4 rounded-lg uppercase tracking-widest btn-hover-lift cursor-pointer">
+            Log Out
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Checkout Confirmation Modal -->
+  <div id="checkout-modal" class="modal-overlay items-center justify-center p-4">
+    <div id="checkout-backdrop" class="absolute inset-0 bg-slate-900/50 backdrop-blur-md"></div>
+    <div class="relative w-full max-w-lg glass-panel rounded-3xl p-8 shadow-2xl bg-white border border-slate-200 z-10 space-y-6">
+      <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 block">Apparel Checkout</span>
+          <h3 class="font-headline-md text-2xl font-bold text-slate-900">Order Summary</h3>
+        </div>
+        <button id="checkout-close" class="text-slate-900 hover:text-slate-600 transition-colors cursor-pointer">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div id="checkout-summary-items" class="space-y-2 max-h-48 overflow-y-auto"></div>
+
+      <div class="pt-4 border-t border-slate-100 space-y-3">
+        <div class="flex justify-between items-center font-bold text-lg text-slate-900">
+          <span>Total Amount</span>
+          <span id="checkout-final-total">$0.00</span>
+        </div>
+        <div class="space-y-2 text-xs">
+          <input type="text" placeholder="Shipping Address" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 outline-none" />
+          <input type="text" placeholder="Card Number (Demo)" required class="w-full px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 outline-none" />
+        </div>
+        <button id="confirm-order-btn" class="w-full bg-slate-900 text-white font-semibold text-xs py-4 rounded-lg uppercase tracking-widest btn-hover-lift mt-4 cursor-pointer">
+          Complete Purchase
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Toast -->
+  <div id="cart-toast" class="fixed bottom-6 right-6 z-[120] bg-slate-900 text-white px-6 py-4 rounded-xl shadow-2xl transform translate-y-24 opacity-0 flex items-center gap-3">
+    <span class="material-symbols-outlined text-emerald-400">check_circle</span>
     <span id="cart-toast-title" class="text-sm font-semibold">Item added to your bag</span>
   </div>
 
-  <!-- Core Storefront Javascript Engine -->
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js?v=2"></script>
 </body>
 </html>

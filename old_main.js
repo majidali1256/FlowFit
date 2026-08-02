@@ -106,28 +106,6 @@ function getCombinedCatalog() {
 document.addEventListener('DOMContentLoaded', () => {
   initAdminMode();
   renderFeaturedProducts();
-
-  const catalog = getCombinedCatalog();
-  const availableCategories = new Set(catalog.map(p => p.category));
-  
-  // Hide empty categories in side drawer
-  document.querySelectorAll('#side-drawer nav a').forEach(a => {
-    const href = a.getAttribute('href');
-    if (href && href.includes('collections.html?category=')) {
-      const cat = new URLSearchParams(href.split('?')[1]).get('category');
-      if (cat && !availableCategories.has(cat)) {
-        a.style.display = 'none';
-      }
-    }
-  });
-
-  // Hide empty categories in filter chips
-  document.querySelectorAll('.filter-chip-btn').forEach(btn => {
-    const cat = btn.getAttribute('data-filter');
-    if (cat !== 'all' && !availableCategories.has(cat)) {
-      btn.style.display = 'none';
-    }
-  });
   renderCollectionsProducts('all');
   renderCartDrawer();
   updateCartBadge();
@@ -344,32 +322,20 @@ document.addEventListener('change', (e) => {
 /* ==========================================================================
    3. DYNAMIC PRODUCT GRID RENDERERS
    ========================================================================== */
-function createProductCardHTML(p) {
-  // Randomly assign badges for the prototype
-  const badgeVal = Math.random();
-  let badgeHtml = '';
-  if (badgeVal > 0.8) {
-    badgeHtml = `<span class="absolute top-4 left-4 bg-rose-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Sale</span>`;
-  } else if (badgeVal > 0.6) {
-    badgeHtml = `<span class="absolute top-4 left-4 bg-emerald-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">New</span>`;
-  } else {
-    badgeHtml = `<span class="absolute top-4 left-4 bg-slate-100 text-slate-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">${p.gender || 'All'}</span>`;
-  }
+function renderFeaturedProducts() {
+  const container = document.getElementById('featured-products-grid');
+  if (!container) return;
 
-  return `
-    <article class="glass-panel rounded-3xl overflow-hidden soft-shadow hover-lift flex flex-col justify-between group relative" data-category="${p.category}" data-id="${p.id}">
+  const catalog = getCombinedCatalog();
+  const featured = catalog.slice(0, 6);
+
+  container.innerHTML = featured.map(p => `
+    <article class="glass-panel rounded-3xl overflow-hidden soft-shadow hover-lift flex flex-col justify-between group" data-category="${p.category}" data-id="${p.id}">
       <div class="aspect-[4/3] bg-slate-50 p-6 flex items-center justify-center relative">
-        <img src="${p.image}" alt="${p.name}" class="max-h-[220px] object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" />
-        ${badgeHtml}
-        
-        <!-- Quick View Overlay -->
-        <div class="absolute inset-0 bg-slate-900/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
-          <button class="quick-view-btn bg-white/90 text-slate-900 rounded-full w-12 h-12 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all shadow-xl hover:scale-110 cursor-pointer" aria-label="Quick View" onclick="openQuickView('${p.id}')">
-            <span class="material-symbols-outlined">visibility</span>
-          </button>
-        </div>
+        <img src="${p.image}" alt="${p.name}" class="max-h-[220px] object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAJXctBq6dGKXdU_xb_MyTNETARrPJQH2oh_wRRJP3DTeNr3wxHOTplkB1eje3uue0zd1tG9jjggeefz6BDRs0kOQR2kdYsIg93SgBRor6738jygyI0VtcDiI6LdrJPRw6mBkuPvA91wLrUazCZCvevN0N3pGXZJLBpdiRyqcg4NbqqiH68b6379JrLZcMjFbc050L2nPRPm2KMnzJNKCqxfrSR_oBAdkp7a3vbFYYGmPJzHWf9CoL3Xw'" />
+        <span class="absolute top-4 left-4 bg-slate-100 text-slate-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">${p.gender || 'All'}</span>
       </div>
-      <div class="p-6 flex-1 flex flex-col justify-between relative z-10 bg-white">
+      <div class="p-6 flex-1 flex flex-col justify-between">
         <div>
           <span class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">${p.category.toUpperCase()}</span>
           <h3 class="font-headline-md text-xl font-bold text-slate-900 mt-1">${p.name}</h3>
@@ -378,30 +344,21 @@ function createProductCardHTML(p) {
 
         <div class="flex gap-2 mt-4 size-selector-group">
           <button class="size-pill px-2.5 py-1 rounded text-xs font-semibold text-slate-700 bg-slate-100">S</button>
-          <button class="size-pill active px-2.5 py-1 rounded text-xs font-semibold bg-[#DDB24A] text-[#1A1A1A] hover:bg-[#c49a37]">M</button>
+          <button class="size-pill active px-2.5 py-1 rounded text-xs font-semibold bg-slate-900 text-white">M</button>
           <button class="size-pill px-2.5 py-1 rounded text-xs font-semibold text-slate-700 bg-slate-100">L</button>
           <button class="size-pill px-2.5 py-1 rounded text-xs font-semibold text-slate-700 bg-slate-100">XL</button>
         </div>
 
-        <div class="flex justify-between items-center mt-6">
-          <span class="font-bold text-lg text-slate-900">$${p.price.toLocaleString()}</span>
-          <button class="add-to-cart-btn bg-[#DDB24A] text-[#1A1A1A] hover:bg-[#c49a37] text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded-lg btn-hover-lift flex items-center gap-2 cursor-pointer shadow-md shadow-slate-900/10">
-            <span class="material-symbols-outlined text-sm">shopping_bag</span> Add
+        <div class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100">
+          <span class="text-base font-bold text-slate-900">$${p.price}</span>
+          <button class="add-to-bag-btn bg-slate-900 hover:bg-slate-800 text-white px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider btn-hover-lift cursor-pointer"
+            data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-size="M" data-image="${p.image}" data-color="${p.colorway}">
+            Add to Bag
           </button>
         </div>
       </div>
     </article>
-  `;
-}
-
-function renderFeaturedProducts() {
-  const container = document.getElementById('featured-products-grid');
-  if (!container) return;
-
-  const catalog = getCombinedCatalog();
-  const featured = catalog.slice(0, 6);
-
-  container.innerHTML = featured.map(createProductCardHTML).join('');
+  `).join('');
 }
 
 function renderCollectionsProducts(filter = 'all', sort = 'featured') {
@@ -425,77 +382,179 @@ function renderCollectionsProducts(filter = 'all', sort = 'featured') {
 
   if (filtered.length === 0) {
     container.innerHTML = `
-      <div class="col-span-full py-12 text-center text-slate-500">
-        <span class="material-symbols-outlined text-4xl mb-2">inventory_2</span>
-        <p class="font-headline-md text-base text-slate-900">No products found in this category.</p>
+      <div class="col-span-full py-16 text-center text-slate-500">
+        <span class="material-symbols-outlined text-4xl mb-2">checkroom</span>
+        <p class="font-headline-md text-lg text-slate-900">No items found in this category</p>
+        <button class="add-product-toggle-btn mt-4 bg-slate-900 text-white text-xs font-semibold px-6 py-3 rounded-lg uppercase tracking-wider btn-hover-lift cursor-pointer">
+          + Add First Product to Category
+        </button>
       </div>
     `;
     return;
   }
 
-  container.innerHTML = filtered.map(createProductCardHTML).join('');
+  container.innerHTML = filtered.map(p => `
+    <article class="product-card-item glass-panel rounded-3xl overflow-hidden soft-shadow hover-lift flex flex-col justify-between group" data-category="${p.category}" data-id="${p.id}">
+      <a href="product.html" class="aspect-[4/3] bg-slate-50 p-6 flex items-center justify-center relative">
+        <img src="${p.image}" alt="${p.name}" class="max-h-[200px] object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuAJXctBq6dGKXdU_xb_MyTNETARrPJQH2oh_wRRJP3DTeNr3wxHOTplkB1eje3uue0zd1tG9jjggeefz6BDRs0kOQR2kdYsIg93SgBRor6738jygyI0VtcDiI6LdrJPRw6mBkuPvA91wLrUazCZCvevN0N3pGXZJLBpdiRyqcg4NbqqiH68b6379JrLZcMjFbc050L2nPRPm2KMnzJNKCqxfrSR_oBAdkp7a3vbFYYGmPJzHWf9CoL3Xw'" />
+        <span class="absolute top-4 left-4 bg-slate-100 text-slate-800 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">${p.gender || 'All'}</span>
+      </a>
+      <div class="p-5 flex-grow flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">${p.category.toUpperCase()}</span>
+          <h3 class="font-headline-md text-lg font-bold text-slate-900 mt-1">${p.name}</h3>
+          <p class="text-xs text-slate-500 mt-1">${p.colorway || 'Standard Fit'}</p>
+        </div>
+        <div class="flex justify-between items-center mt-6 pt-4 border-t border-slate-100">
+          <span class="text-base font-bold text-slate-900">$${p.price}</span>
+          <button class="add-to-bag-btn bg-slate-900 hover:bg-slate-800 text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider btn-hover-lift cursor-pointer"
+            data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-size="M" data-image="${p.image}" data-color="${p.colorway}">
+            Add
+          </button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+/* ==========================================================================
+   4. FORM SUBMIT & CHECKOUT HANDLERS
+   ========================================================================== */
+function initAddProductFormSubmit() {
+  const form = document.getElementById('add-product-form');
+  const resetBtn = document.getElementById('reset-catalog-btn');
+
+  if (form) {
+    form.onsubmit = (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('prod-name').value.trim();
+      const category = document.getElementById('prod-category').value;
+      const gender = document.getElementById('prod-gender').value;
+      const price = parseFloat(document.getElementById('prod-price').value) || 0;
+      const colorway = document.getElementById('prod-color').value.trim() || 'Standard';
+      const description = document.getElementById('prod-desc').value.trim() || 'Premium apparel essential.';
+      let image = document.getElementById('prod-image').value.trim();
+
+      if (!image) {
+        image = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAJXctBq6dGKXdU_xb_MyTNETARrPJQH2oh_wRRJP3DTeNr3wxHOTplkB1eje3uue0zd1tG9jjggeefz6BDRs0kOQR2kdYsIg93SgBRor6738jygyI0VtcDiI6LdrJPRw6mBkuPvA91wLrUazCZCvevN0N3pGXZJLBpdiRyqcg4NbqqiH68b6379JrLZcMjFbc050L2nPRPm2KMnzJNKCqxfrSR_oBAdkp7a3vbFYYGmPJzHWf9CoL3Xw';
+      }
+
+      const newProd = {
+        id: 'custom-' + Date.now(),
+        name,
+        category,
+        gender,
+        price,
+        image,
+        colorway,
+        description,
+        sizes: ['S', 'M', 'L', 'XL']
+      };
+
+      const customProducts = getCustomProducts();
+      customProducts.unshift(newProd);
+      saveCustomProducts(customProducts);
+
+      renderFeaturedProducts();
+      renderCollectionsProducts(category);
+      toggleModal('add-product-modal', false);
+      form.reset();
+
+      showCartToast(`${name} added to catalog!`);
+    };
+  }
+
+  if (resetBtn) {
+    resetBtn.onclick = () => {
+      if (confirm('Are you sure you want to reset custom products?')) {
+        localStorage.removeItem(STORE_CUSTOM_PRODUCTS_KEY);
+        renderFeaturedProducts();
+        renderCollectionsProducts('all');
+        toggleModal('add-product-modal', false);
+        showCartToast('Catalog reset to default');
+      }
+    };
+  }
+}
+
+function initCheckoutConfirm() {
+  const confirmOrderBtn = document.getElementById('confirm-order-btn');
+  if (confirmOrderBtn) {
+    confirmOrderBtn.onclick = () => {
+      confirmOrderBtn.disabled = true;
+      confirmOrderBtn.textContent = 'Processing Order...';
+
+      setTimeout(() => {
+        saveCartItems([]);
+        toggleModal('checkout-modal', false);
+        confirmOrderBtn.disabled = false;
+        confirmOrderBtn.textContent = 'Complete Purchase';
+        alert('Thank you for shopping at Flow Wear! Your order has been placed.');
+      }, 1200);
+    };
+  }
+}
+
+/* ==========================================================================
+   5. CART PERSISTENCE & TOAST ENGINE
+   ========================================================================== */
+function getCartItems() {
+  try {
+    return JSON.parse(localStorage.getItem(STORE_CART_KEY)) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveCartItems(items) {
+  localStorage.setItem(STORE_CART_KEY, JSON.stringify(items));
+  renderCartDrawer();
+  updateCartBadge();
+}
+
+function updateCartBadge() {
+  const items = getCartItems();
+  const totalCount = items.reduce((sum, i) => sum + i.quantity, 0);
+  document.querySelectorAll('.cart-count-badge').forEach(badge => {
+    badge.textContent = totalCount;
+    badge.style.display = totalCount > 0 ? 'inline-flex' : 'none';
+  });
 }
 
 function renderCartDrawer() {
   const container = document.getElementById('cart-items-container');
-  const subtotalRawEl = document.getElementById('cart-subtotal-raw');
-  const subtotalFinalEl = document.getElementById('cart-subtotal');
-  const discountRow = document.getElementById('discount-row');
-  const discountEl = document.getElementById('cart-discount');
-  const shippingMsg = document.getElementById('shipping-message');
-  const shippingBar = document.getElementById('shipping-progress-bar');
-  const shippingSuccess = document.getElementById('shipping-success-icon');
-  
-  if (!container) return;
+  const subtotalEl = document.getElementById('cart-subtotal-price');
+  if (!container || !subtotalEl) return;
 
   const items = getCartItems();
   container.innerHTML = '';
 
   if (items.length === 0) {
-    const catalog = getCombinedCatalog();
-    const trending = catalog.slice(0, 2);
-    const trendingHtml = trending.map(p => `
-      <div class="flex gap-4 items-center p-3 border border-slate-100 rounded-2xl bg-white hover:border-slate-300 transition-colors cursor-pointer group" onclick="openQuickView('${p.id}')">
-        <img src="${p.image}" class="w-16 h-16 object-contain bg-slate-50 rounded-xl group-hover:scale-105 transition-transform" />
-        <div class="flex-1 text-left">
-          <p class="text-xs font-bold text-slate-900 truncate">${p.name}</p>
-          <p class="text-xs text-slate-500">$${p.price.toLocaleString()}</p>
-        </div>
-        <span class="material-symbols-outlined text-slate-300 group-hover:text-slate-900 transition-colors">add_circle</span>
-      </div>
-    `).join('');
-
     container.innerHTML = `
-      <div class="flex flex-col items-center justify-center py-8 text-center border-b border-slate-100 mb-6">
+      <div class="flex flex-col items-center justify-center py-16 text-center">
         <span class="material-symbols-outlined text-4xl text-slate-300 mb-3">checkroom</span>
-        <p class="font-headline-md text-lg text-slate-900 mb-1">Your bag is empty</p>
-        <a href="collections.html" class="mt-4 bg-[#DDB24A] text-[#1A1A1A] hover:bg-[#c49a37] text-[10px] font-semibold uppercase tracking-wider px-5 py-2.5 rounded-lg btn-hover-lift inline-block cursor-pointer">Shop Now</a>
-      </div>
-      <div>
-        <p class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3 text-center">Trending Right Now</p>
-        <div class="space-y-3">
-          ${trendingHtml}
-        </div>
+        <p class="font-headline-md text-lg text-slate-900 mb-1">Your wardrobe bag is empty</p>
+        <p class="font-body-md text-sm text-slate-500">Explore premium shirts, pants, jackets, and caps tailored for everyone.</p>
+        <a href="collections.html" class="mt-6 bg-slate-900 text-white text-xs font-semibold uppercase tracking-wider px-6 py-3 rounded-lg btn-hover-lift inline-block">
+          Shop All Apparel
+        </a>
       </div>
     `;
-    if(subtotalFinalEl) subtotalFinalEl.textContent = '$0.00';
-    if(subtotalRawEl) subtotalRawEl.textContent = '$0.00';
-    if(discountRow) discountRow.style.display = 'none';
-    if(shippingBar) shippingBar.style.width = '0%';
-    if(shippingMsg) shippingMsg.textContent = 'Free shipping on orders over $75';
+    subtotalEl.textContent = '$0.00';
     return;
   }
 
-  let rawSubtotal = 0;
+  let subtotal = 0;
   items.forEach(item => {
-    rawSubtotal += item.price * item.quantity;
+    subtotal += item.price * item.quantity;
     const itemEl = document.createElement('div');
     itemEl.className = 'flex items-center gap-4 py-4 border-b border-slate-100';
     itemEl.innerHTML = `
       <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain rounded-lg bg-slate-50 p-1 border border-slate-100" />
       <div class="flex-1 min-w-0">
         <h4 class="font-headline-md text-sm font-semibold text-slate-900 truncate">${item.name}</h4>
-        <p class="text-xs text-slate-500">Size <span class="font-bold text-slate-900">${item.size || 'M'}</span></p>
+        <p class="text-xs text-slate-500">${item.colorway || ''} · Size <span class="font-bold text-slate-900">${item.size || 'M'}</span></p>
         <p class="text-sm font-semibold text-slate-900 mt-1">$${item.price.toLocaleString()}</p>
       </div>
       <div class="flex items-center gap-2">
@@ -507,43 +566,7 @@ function renderCartDrawer() {
     container.appendChild(itemEl);
   });
 
-  // Calculate Discount
-  let discount = 0;
-  const activePromo = localStorage.getItem('flow_wear_promo');
-  if (activePromo === 'FLOW10') {
-    discount = rawSubtotal * 0.10;
-    if(discountRow) {
-      discountRow.style.display = 'flex';
-      discountEl.textContent = `-$${discount.toFixed(2)}`;
-    }
-  } else {
-    if(discountRow) discountRow.style.display = 'none';
-  }
-
-  const finalTotal = rawSubtotal - discount;
-
-  if(subtotalRawEl) subtotalRawEl.textContent = `$${rawSubtotal.toFixed(2)}`;
-  if(subtotalFinalEl) subtotalFinalEl.textContent = `$${finalTotal.toFixed(2)}`;
-
-  // Calculate Shipping Threshold
-  const threshold = 75.00;
-  if(shippingBar && shippingMsg && shippingSuccess) {
-    if (finalTotal >= threshold) {
-      shippingBar.style.width = '100%';
-      shippingBar.classList.remove('bg-emerald-500', 'bg-amber-400');
-      shippingBar.classList.add('bg-emerald-500');
-      shippingMsg.textContent = 'You have unlocked free shipping!';
-      shippingSuccess.classList.remove('hidden');
-    } else {
-      const remaining = threshold - finalTotal;
-      const pct = (finalTotal / threshold) * 100;
-      shippingBar.style.width = `${pct}%`;
-      shippingBar.classList.remove('bg-emerald-500');
-      shippingBar.classList.add('bg-amber-400');
-      shippingMsg.textContent = `You are $${remaining.toFixed(2)} away from free shipping!`;
-      shippingSuccess.classList.add('hidden');
-    }
-  }
+  subtotalEl.textContent = `$${subtotal.toLocaleString()}.00`;
 
   container.querySelectorAll('.cart-qty-btn').forEach(btn => {
     btn.onclick = (e) => {
@@ -551,15 +574,15 @@ function renderCartDrawer() {
       const id = btn.getAttribute('data-id');
       const size = btn.getAttribute('data-size');
       const action = btn.getAttribute('data-action');
-      let currentItems = getCartItems();
-      const index = currentItems.findIndex(i => i.id === id && i.size === size);
+      let items = getCartItems();
+      const index = items.findIndex(i => i.id === id && i.size === size);
       if (index > -1) {
-        if (action === 'inc') currentItems[index].quantity += 1;
+        if (action === 'inc') items[index].quantity += 1;
         else if (action === 'dec') {
-          currentItems[index].quantity -= 1;
-          if (currentItems[index].quantity <= 0) currentItems.splice(index, 1);
+          items[index].quantity -= 1;
+          if (items[index].quantity <= 0) items.splice(index, 1);
         }
-        saveCartItems(currentItems);
+        saveCartItems(items);
       }
     };
   });
@@ -633,7 +656,7 @@ function renderSearchResults(query) {
       </div>
       <div class="flex items-center gap-3">
         <span class="text-sm font-bold text-slate-900">$${p.price}</span>
-        <button class="add-to-bag-btn bg-[#DDB24A] text-[#1A1A1A] hover:bg-[#c49a37] text-xs font-semibold px-3 py-1.5 rounded-lg btn-hover-lift cursor-pointer"
+        <button class="add-to-bag-btn bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg btn-hover-lift cursor-pointer"
           data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" data-size="M" data-image="${p.image}" data-color="${p.colorway}">
           Add
         </button>
@@ -750,112 +773,5 @@ function initAdminMode() {
       alert('Logged out successfully.');
       window.location.reload();
     };
-  });
-}
-
-
-
-/* ==========================================================================
-   RESTORED FUNCTIONS
-   ========================================================================== */
-function initAddProductFormSubmit() {
-  const form = document.getElementById('add-product-form');
-  const resetBtn = document.getElementById('reset-catalog-btn');
-
-  if (form) {
-    form.onsubmit = (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('prod-name').value.trim();
-      const category = document.getElementById('prod-category').value;
-      const gender = document.getElementById('prod-gender').value;
-      const price = parseFloat(document.getElementById('prod-price').value) || 0;
-      const colorway = document.getElementById('prod-color').value.trim() || 'Standard';
-      const description = document.getElementById('prod-desc').value.trim() || 'Premium apparel essential.';
-      let image = document.getElementById('prod-image').value.trim();
-
-      if (!image) {
-        image = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAJXctBq6dGKXdU_xb_MyTNETARrPJQH2oh_wRRJP3DTeNr3wxHOTplkB1eje3uue0zd1tG9jjggeefz6BDRs0kOQR2kdYsIg93SgBRor6738jygyI0VtcDiI6LdrJPRw6mBkuPvA91wLrUazCZCvevN0N3pGXZJLBpdiRyqcg4NbqqiH68b6379JrLZcMjFbc050L2nPRPm2KMnzJNKCqxfrSR_oBAdkp7a3vbFYYGmPJzHWf9CoL3Xw';
-      }
-
-      const newProd = {
-        id: 'custom-' + Date.now(),
-        name,
-        category,
-        gender,
-        price,
-        image,
-        colorway,
-        description,
-        sizes: ['S', 'M', 'L', 'XL']
-      };
-
-      const customProducts = getCustomProducts();
-      customProducts.unshift(newProd);
-      saveCustomProducts(customProducts);
-
-      renderFeaturedProducts();
-      renderCollectionsProducts(category);
-      toggleModal('add-product-modal', false);
-      form.reset();
-
-      showCartToast(`${name} added to catalog!`);
-    };
-  }
-
-  if (resetBtn) {
-    resetBtn.onclick = () => {
-      if (confirm('Are you sure you want to reset custom products?')) {
-        localStorage.removeItem(STORE_CUSTOM_PRODUCTS_KEY);
-        renderFeaturedProducts();
-        renderCollectionsProducts('all');
-        toggleModal('add-product-modal', false);
-        showCartToast('Catalog reset to default');
-      }
-    };
-  }
-}
-
-function initCheckoutConfirm() {
-  const confirmOrderBtn = document.getElementById('confirm-order-btn');
-  if (confirmOrderBtn) {
-    confirmOrderBtn.onclick = () => {
-      confirmOrderBtn.disabled = true;
-      confirmOrderBtn.textContent = 'Processing Order...';
-
-      setTimeout(() => {
-        saveCartItems([]);
-        toggleModal('checkout-modal', false);
-        confirmOrderBtn.disabled = false;
-        confirmOrderBtn.textContent = 'Complete Purchase';
-        alert('Thank you for shopping at FLOWEAR! Your order has been placed.');
-      }, 1200);
-    };
-  }
-}
-
-/* ==========================================================================
-   5. CART PERSISTENCE & TOAST ENGINE
-   ========================================================================== */
-function getCartItems() {
-  try {
-    return JSON.parse(localStorage.getItem(STORE_CART_KEY)) || [];
-  } catch (e) {
-    return [];
-  }
-}
-
-function saveCartItems(items) {
-  localStorage.setItem(STORE_CART_KEY, JSON.stringify(items));
-  renderCartDrawer();
-  updateCartBadge();
-}
-
-function updateCartBadge() {
-  const items = getCartItems();
-  const totalCount = items.reduce((sum, i) => sum + i.quantity, 0);
-  document.querySelectorAll('.cart-count-badge').forEach(badge => {
-    badge.textContent = totalCount;
-    badge.style.display = totalCount > 0 ? 'inline-flex' : 'none';
   });
 }
